@@ -135,7 +135,11 @@ public class Simulation {
      Hashage hash = new Hashage();
      hash.set(T, Centrale);
      Centrale.chargement(T, hash);
-     System.out.println("clef de A"+ A.clef());
+     System.out.println("clef de A : "+ A.clef());
+     
+     
+     Tablehash tabhash= Centrale.chargementbucket(T);
+     tabhash.affiche();
      
    }
   

@@ -32,10 +32,12 @@ public class Bucket {
     }
     
     public void affiche(){
-        System.out.println("Block n:"+this.nb+" de taille:"+this.taille);
+        System.out.println("Bucket n:"+this.nb+" de taille:"+this.taille);
+        try{
         for( int i = 0 ; i<taille; i++){
             this.Don[i].affiche();
         }
+        }catch(Exception e){}
     }
     
     public int taille(){

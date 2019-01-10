@@ -13,15 +13,20 @@ public class Tablehash {
     private String nom;
     private int taille;
     private Bucket [] espacealloue;
+    private int curseur;
     
     public void set(String appelation, int taille){
         this.nom=appelation;
         this.taille=taille;
         this.espacealloue = new Bucket [taille];
+        this.curseur = 0;
     }
     
-    public void integration(int place,Bucket a){
-        this.espacealloue[place]= a;
+    
+    
+    public void integration(Bucket a){
+        this.espacealloue[this.curseur]= a;
+        this.curseur = this.curseur+1;
     }
     
     public String get(){
@@ -38,9 +43,11 @@ public class Tablehash {
     
     public void affiche(){
         System.out.println("Table:"+this.nom+" de taille "+this.taille+"composé de ");
-        for (int i=0;i<taille;i++){
-            this.espacealloue[i].affiche();
-        }  
+        try{
+            for (int i=0;i<taille;i++){
+                this.espacealloue[i].affiche();
+            }
+        }catch(Exception e){}
     }
     
     public int taille(){
