@@ -140,7 +140,6 @@ public class Simulation {
      
      Tablehash tabhash= Centrale.chargementbucket(T);
      tabhash.affiche();
-     
    }
   
 }

@@ -42,7 +42,7 @@ public class Jointure {
                         Donnees don = new Donnees();
                         Random rand= new Random();
                         int nbaupif = rand.nextInt(100000000);
-                        don.set(nbaupif, concat, motconcat);//Achanger clef primaire naze
+                        don.set(nbaupif, concat, motconcat);
                         
                     }
                     

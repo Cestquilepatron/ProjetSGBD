@@ -13,6 +13,7 @@ public class Bucket {
     private  int nb;
     private  int taille;
     private  Donnees Don [];
+    private int nbdedonnees;//curseur pour placer les données.
     private int clefdehash;
     
     public void set(int num, int taille,int clef){
@@ -20,10 +21,12 @@ public class Bucket {
         this.taille=taille;
         this.Don = new Donnees [taille];
         this.clefdehash = clef;
+        this.nbdedonnees = 0;
     }
-    public void integration(int place,Donnees a){
+    public void integration(Donnees a){
         if (a.clef()==this.clefdehash){
-            this.Don[place]= a;
+            this.Don[nbdedonnees]= a;
+            this.nbdedonnees = this.nbdedonnees +1;
         } 
     }
     
@@ -32,12 +35,13 @@ public class Bucket {
     }
     
     public void affiche(){
-        System.out.println("Bucket n:"+this.nb+" de taille:"+this.taille);
         try{
-        for( int i = 0 ; i<taille; i++){
-            this.Don[i].affiche();
-        }
-        }catch(Exception e){}
+            System.out.println("Bucket n:"+this.nb+" de taille:"+this.taille +" de clef " + this.clefdehash);
+            for( int i = 0 ; i<taille; i++){
+                this.Don[i].affiche();
+                System.out.println("boucle jusqu'à " +i);
+            }
+        }catch(Exception e){System.out.println("bucket non def");}
     }
     
     public int taille(){

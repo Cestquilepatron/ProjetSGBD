@@ -57,7 +57,7 @@ public class Memoirecentrale {
     
     public Tablehash chargementbucket(Table T){
         Tablehash tabhash=new Tablehash();
-        tabhash.set(T.get(), 100);
+        tabhash.set(T.get(), 1000);
         int parcourstab=0;
         while (parcourstab < T.taille()){//parcours de la table
             for (int i=0 ; i < nbbuffer ;i++ ){//chargement des blocs dans les buffers
@@ -75,49 +75,10 @@ public class Memoirecentrale {
                 }catch(Exception e){System.out.println("chargement fail à l'étape "+i+" tab chargé jusqu'à la séquence "+parcourstab+ " sur une taille de tab de"+ T.taille());}
             }
             //tout les buffers sont chargés, mais la table ne tient pas dans la memoire centrale, donc on hache les buffers puis on les reremplis
-            for (int i = 0; i< nbbuffer; i++){
-                try{
-                    for (int j=0; j< Memoire[i].taille();j++){
-                        Block bloc = Memoire[i].dechargement(j);
-                        for (int parcour = 0; parcour<bloc.taille();parcour++){
-                            Donnees donne = bloc.utilisation(parcour);
-                            try{
-                            Bucket buck=base.research2(donne.clef());
-                            buck.integration(base.get2()+1,donne);
-
-                            }catch(Exception e)
-                                {
-                                    Bucket buck = new Bucket();
-                                    buck.set(base.get2(), 5, donne.clef());
-                                    base.add2(buck);
-                                    tabhash.integration( buck);
-                                }
-                            
-                        }
-                    }
-                }catch(Exception e){}
-            }
+           remplissagebucket(tabhash);
         }
-        for (int i = 0; i< nbbuffer; i++){
-            try{
-                for (int j=0; j< Memoire[i].taille();j++){
-                    Block bloc = Memoire[i].dechargement(j);
-                    for (int parcour = 0; parcour<bloc.taille();parcour++){
-                        Donnees donne = bloc.utilisation(parcour);
-                        try{
-                            Bucket buck=base.research2(donne.clef());
-                            buck.integration(base.get2()+1,donne);
-                        }catch(Exception e)
-                        {
-                            Bucket buck = new Bucket();
-                            buck.set(base.get2(), 5, donne.clef());
-                            base.add2(buck);
-                            tabhash.integration( buck);
-                        }    
-                    }
-                }
-            }catch(Exception e){}
-        }
+        remplissagebucket(tabhash);
+        
         return tabhash;
     }
     
@@ -130,36 +91,38 @@ public class Memoirecentrale {
                         Donnees donne = bloc.utilisation(parcour);
                         try{
                             Bucket buck=base.research2(donne.clef());
-                            buck.integration(base.get2()+1,donne);
+                            buck.integration(donne);
+                            System.out.println("mise dans bucket "+ buck.get()+"réussi pour l'étape "+parcour);
                         }catch(Exception e)
                            {
                                 Bucket buck = new Bucket();
                                 buck.set(base.get2(), 5, donne.clef());
                                 base.add2(buck);
                                 tabhash.integration( buck);
+                                System.out.println(e +" création puis mise dans bucket réussi pour l'étape "+parcour);
                             }
                     }
                 }
-            }catch(Exception e){}
+            }catch(Exception e){System.out.println("Erreur mise dans bucket "+i);}
         }
     }
     
     
-    public void chargement (Table tab, Table tabdeux,Jointure J){
-        int parcourtab = 0;
-        while (parcourtab < tab.taille()){//pacours de la table
-            for (int i=0 ; i < nbbuffer ;i++ ){//chargement des blocs dans les buffers
-                if (this.Memoire[(i-1)%(nbbuffer-1)].indiceseqrestante()!=0){//Vérification de si la sequence est entierement chargé
-                    this.Memoire[i].chargementseq(tab.liaison(parcourtab), base,this.Memoire[(i-1)%(nbbuffer-1)].indiceseqrestante());
-                }
-                else{
-                    parcourtab++;
-                    this.Memoire[i].chargementseq(tab.liaison(parcourtab),base,0);
-                }
-            }
-            //tout les buffers sont chargés, mais la table ne tient pas dans la memoire centrale, donc on hache les buffers puis on les reremplis
-            //jointure
+    public void chargement (Tablehash tab, Tablehash tabdeux,Jointure J){
+        int[] indicetab= new int [tab.taille()];
+        int[] indicetabdeux=new int [tabdeux.taille()];
+        for( int i = 0;i<tab.taille();i++){
+            indicetab[i]=tab.liaison(i).clef();
         }
-        //jointure //hachage en sortie de while pour finir la table
+        for( int i = 0;i<tabdeux.taille();i++){
+            indicetabdeux[i]=tabdeux.liaison(i).clef();
+        }
+        
+        int parcourstab=0;
+        int parcourstabdeux=0;
+        while (parcourstab < tab.taille()){
+            
+        }
+        
     }
 }

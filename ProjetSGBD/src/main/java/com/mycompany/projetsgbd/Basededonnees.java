@@ -58,7 +58,7 @@ public class Basededonnees {
         Donnees Err = new Donnees();
         Err.set(1000000000, 0, 1);
         Err.insertiondonnee(0, "Erreur, bloc non-existant");
-        b.integration(0, Err);
+        b.integration(Err);
         return b;
     }
     
