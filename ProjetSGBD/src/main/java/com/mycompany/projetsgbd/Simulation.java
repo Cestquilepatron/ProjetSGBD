@@ -20,7 +20,7 @@ public class Simulation {
       //Création de données
       Donnees A = new Donnees();
       A.set(1, 1, 0);
-      A.affiche();
+      //A.affiche();
       Donnees A2 = new Donnees();
       A2.set(2, 5, 1);
       Donnees A3 = new Donnees();
@@ -38,6 +38,61 @@ public class Simulation {
       A2.insertiondonnee(4, 1);
       A2.insertiondonnee(0, "donne");
       
+      Donnees A5 = new Donnees();
+      A5.set(5, 1, 0);
+      Donnees A6 = new Donnees();
+      A6.set(5, 1, 0);
+      Donnees A7 = new Donnees();
+      A7.set(7, 1, 0);
+      Donnees A8 = new Donnees();
+      A8.set(8, 1, 0);
+      Donnees A9 = new Donnees();
+      A9.set(9, 1, 0);
+      Donnees A10 = new Donnees();
+      A10.set(10, 1, 0);
+      Donnees A11 = new Donnees();
+      A11.set(11, 1, 0);
+      Donnees A12 = new Donnees();
+      A12.set(12, 1, 0);
+      Donnees A13 = new Donnees();
+      A13.set(13, 1, 0);
+      Donnees A14 = new Donnees();
+      A14.set(14, 1, 0);
+      Donnees A15 = new Donnees();
+      A15.set(15, 1, 0);
+      Donnees A16 = new Donnees();
+      A16.set(16, 1, 0);
+      Donnees A17 = new Donnees();
+      A17.set(17, 1, 0);
+      Donnees A18 = new Donnees();
+      A18.set(18, 1, 0);
+      Donnees A19 = new Donnees();
+      A19.set(19, 1, 0);
+      Donnees A20 = new Donnees();
+      A20.set(20, 1, 0);
+      Donnees A21 = new Donnees();
+      A21.set(21, 1, 0);
+      Donnees A22 = new Donnees();
+      A22.set(1, 1, 0);
+      
+       A5.insertiondonnee(0, 5);
+       A6.insertiondonnee(0, 6);
+      A7.insertiondonnee(0, 7);
+      A8.insertiondonnee(0, 8);
+      A9.insertiondonnee(0, 9);
+      A10.insertiondonnee(0, 10);
+      A11.insertiondonnee(0, 11);
+      A12.insertiondonnee(0, 12);
+      A13.insertiondonnee(0, 13);
+      A14.insertiondonnee(0, 14);
+      A15.insertiondonnee(0, 15);
+      A16.insertiondonnee(0, 16);
+      A17.insertiondonnee(0, 17);
+      A18.insertiondonnee(0, 18);
+      A19.insertiondonnee(0, 19);
+      A20.insertiondonnee(0, 20);
+      A21.insertiondonnee(0, 21);
+      A22.insertiondonnee(0, 22);
       
 
       A.affiche();
@@ -47,33 +102,33 @@ public class Simulation {
       Block B = new Block();
       B.set(0, 2);
       B.integration(0, A);
-      B.integration(1, A);
+      B.integration(1, A2);
       Block B1 = new Block();
       B.set(1, 2);
-      B.integration(0, A);
-      B.integration(1, A);
+      B.integration(0, A3);
+      B.integration(1, A4);
       Block B2 = new Block();
       B2.set(2, 4);
-      B2.integration(0, A);
-      B2.integration(1, A4);
-      B2.integration(2, A2);
-      B2.integration(3, A3);
+      B2.integration(0, A5);
+      B2.integration(1, A6);
+      B2.integration(2, A7);
+      B2.integration(3, A8);
       Block B3 = new Block();
       B3.set(3, 2);
-      B3.integration(0, A4);
-      B3.integration(1, A3);
+      B3.integration(0, A9);
+      B3.integration(1, A10);
       Block B4 = new Block();
       B4.set(4, 2);
-      B4.integration(0, A4);
-      B4.integration(1, A3);
+      B4.integration(0, A11);
+      B4.integration(1, A12);
       Block B5 = new Block();
       B5.set(5, 2);
-      B5.integration(0, A2);
-      B5.integration(1, A);
+      B5.integration(0, A13);
+      B5.integration(1, A14);
       Block B6 = new Block();
       B6.set(6, 2);
-      B6.integration(0, A3);
-      B6.integration(1, A3);
+      B6.integration(0, A15);
+      B6.integration(1, A16);
       
       B2.affiche();
       B.affiche();
@@ -140,6 +195,8 @@ public class Simulation {
      
      Tablehash tabhash= Centrale.chargementbucket(T);
      tabhash.affiche();
+     
+     
    }
   
 }

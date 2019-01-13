@@ -109,20 +109,34 @@ public class Memoirecentrale {
     
     
     public void chargement (Tablehash tab, Tablehash tabdeux,Jointure J){
-        int[] indicetab= new int [tab.taille()];
-        int[] indicetabdeux=new int [tabdeux.taille()];
-        for( int i = 0;i<tab.taille();i++){
-            indicetab[i]=tab.liaison(i).clef();
-        }
-        for( int i = 0;i<tabdeux.taille();i++){
-            indicetabdeux[i]=tabdeux.liaison(i).clef();
-        }
-        
+        //creation table jointure
+        Table jointure= new Table();
+        String nomjointure= "jointure "+ tab.get() +" "+tabdeux.get();
+        jointure.set(nomjointure, 1);
+        //
         int parcourstab=0;
         int parcourstabdeux=0;
-        while (parcourstab < tab.taille()){
-            
-        }
+       do {
+            for (int i=0;i<this.nbbuffer/2;i++){
+                try{
+                    this.Memoire[i].chargement2(tab.liaison(parcourstab));
+                    parcourstab++;
+                }catch(Exception e){}
+            }
+             do {
+                for (int j=this.nbbuffer/2;j<this.nbbuffer;j++){
+                    try{
+                        this.Memoire[j].chargement2(tab.liaison(parcourstabdeux));
+                        parcourstabdeux++;
+                    }catch(Exception e){}
+
+                }
+                try{
+                    J.jointure();
+                }catch (Exception e){}
+                
+            }while(parcourstabdeux < tabdeux.taille());
+        }while (parcourstab < tab.taille());
         
     }
 }

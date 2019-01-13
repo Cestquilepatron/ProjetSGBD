@@ -14,7 +14,7 @@ public class Buffer {
     private  int capacite;
     private int remplissage;
     private Block[] contenu;
-    private Bucket[] contient;
+    private Bucket contient;
     private boolean sequencefinie;//pour savoir si le buffer suivant doit charger la même sequence
     private int nbblocseq;//pour donner au buffer suivant à partir de quelle sequence, il doit charger
     
@@ -22,7 +22,7 @@ public class Buffer {
         this.id=numero;
         this.capacite=taille;
         this.contenu= new Block[taille];
-        this.contient=new Bucket[taille];
+        this.contient=new Bucket();
         this.sequencefinie = true;
         this.nbblocseq = 0;
     }
@@ -35,26 +35,17 @@ public class Buffer {
        return this.contenu[i];
     }
     
-    public void chargement2(int i ,Bucket bloc){
-        this.contient[i] = bloc;
+    public void chargement2(Bucket bloc){
+        this.contient = bloc;
     }
     
-    public Bucket dechargement2(int i ){
-       return this.contient[i];
+    public Bucket dechargement2(){
+       return this.contient;
     }
     
-    public void chargementbucket (int place,Bucket buc){
-        this.contient[place]=buc;
-    }
     
     public void chargementtablethash (int place,Tablehash table){
-        this.remplissage=0;
-        for(int i = 0; i<this.capacite;i++){
-            if(i!=0&& table.liaison(i+place).clef()==table.liaison(i+place).clef()){
-                this.contient[i]=table.liaison(i+place);
-                this.remplissage++;
-            }
-        }
+        this.contient=table.liaison(place);
     }
     
     public int remplis(){

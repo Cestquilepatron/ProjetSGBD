@@ -28,4 +28,8 @@ public class Sequenceblock {
         int tab [] = new int [] {id ,premierbloc ,taille};
         return tab;
     }
+    
+    public void agrandissement(){
+        this.taille = this.taille++;
+    }
 }
