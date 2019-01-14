@@ -33,29 +33,22 @@ public class Jointure {
             Bucket buc1=buf1.dechargement2();
             Bucket buc2=buf2.dechargement2();
                 if (buc1.clef()==buc2.clef()){
-                    System.out.println("presque putain");
                     for (int parcour = 0; parcour<buc1.taille() ;parcour++){
                         for (int parcours=0 ; parcours<buc2.taille();parcours++){
-                            System.out.println(" oui ou non 1");
                             int[] entier1 = buc1.utilisation(parcour).lectureentier() ;
                             int[] entier2 = buc2.utilisation(parcours).lectureentier();
                             int[] concat = new int [entier1.length+entier2.length];
-                            System.out.println(" oui ou non2");
                             System.arraycopy(entier1, 0, concat, 0, entier1.length);
                             System.arraycopy(entier2, 0, concat, entier1.length, entier2.length);
-                            System.out.println(" oui ou non3");
                             String[] string1 = buc1.utilisation(parcour).lecturestring() ;
                             String[] string2 = buc2.utilisation(parcours).lecturestring();
                             String[] motconcat = new String [string1.length+string2.length];
-                            System.out.println(" oui ou non4");
                             System.arraycopy(string1, 0, motconcat, 0, string1.length);
                             System.arraycopy(string2, 0, motconcat, string1.length, string2.length);
-                            System.out.println(" oui ou non5");
                             Donnees don = new Donnees();
                             Random rand= new Random();
                             int nbaupif = rand.nextInt(100000000);
                             don.set(nbaupif, concat, motconcat);
-                            don.affiche();
                             int[] Seq=this.tab.liaison(0).get();
                             Block bloc= this.mem.base().research(Seq[1]+Seq[2]-1);
                             if (!bloc.remplis()){
@@ -66,7 +59,6 @@ public class Jointure {
                                 Block bloc2= new Block();
                                 bloc2.set(Seq[1]+Seq[2], 2);
                                 this.tab.liaison(0).agrandissement();
-                                this.tab.liaison(0).affiche();
                                 bloc2.integration2(don);
                                 this.mem.base().add(bloc2);
                                 System.out.println("nouveau bloc");

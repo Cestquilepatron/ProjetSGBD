@@ -14,7 +14,7 @@ public class Simulation {
   public static void  main (String [] args){
       //Création base de données
       Basededonnees base = new Basededonnees();
-      base.set(1000);
+      base.set(100);
       
       
       //Création de données
@@ -247,11 +247,156 @@ public class Simulation {
       Join.set(jointure, Centrale);
       Centrale.chargement(tabhash, tablehash, Join);
       
-      System.out.println("Marche : ");
+      System.out.println("Jointure obtenue : ");
       jointure.affiche();
       
       base.research(10).affiche();
+      
+      //*************************************************************************************************
+      // 2eme exemple
+      //********************************************************
+      System.out.println();
+      System.out.println("2ème exemple");
+      System.out.println();
+      
+      Basededonnees newbase = new Basededonnees();
+      newbase.set(100);
+      
+      //Création données block séquences de blocs puis table
+      Donnees don0 = new Donnees();
+      Donnees don1 = new Donnees();
+      Donnees don2 = new Donnees();
+      Donnees don3 = new Donnees();
+      Donnees don4 = new Donnees();
+      Donnees don5 = new Donnees();
+      Donnees don6 = new Donnees();
+      Donnees don7 = new Donnees();
+      Donnees don8 = new Donnees();
+      Donnees don9 = new Donnees();
+      Donnees don10 = new Donnees();
+      Donnees don11 = new Donnees();
+      Donnees don12 = new Donnees();
+      Donnees don13 = new Donnees();
+      Donnees don14 = new Donnees();
+      Donnees don15 = new Donnees();
+      Donnees don16 = new Donnees();
+      Donnees don17 = new Donnees();
+      Donnees don18 = new Donnees();
+      Donnees don19 = new Donnees();
+      
+      don0.set(0, 1, 0);
+      don1.set(1, 1, 0);
+      don2.set(2, 1, 0);
+      don3.set(3, 1, 0);
+      don4.set(4, 1, 0);
+      don5.set(5, 1, 0);
+      don6.set(6, 1, 0);
+      don7.set(7, 1, 0);
+      don8.set(8, 1, 0);
+      don9.set(9, 1, 0);
+      don10.set(10, 1, 0);
+      don11.set(11, 1, 0);
+      don12.set(12, 1, 0);
+      don13.set(13, 1, 0);
+      don14.set(14, 1, 0);
+      don15.set(15, 1, 0);
+      don16.set(16, 1, 0);
+      don17.set(17, 1, 0);
+      don18.set(18, 1, 0);
+      don19.set(19, 1, 0);
+      
+      don0.insertiondonnee(0, 0);
+      don1.insertiondonnee(0, 8);
+      don2.insertiondonnee(0, 9);
+      don3.insertiondonnee(0, 5);
+      don4.insertiondonnee(0, 4);
+      don5.insertiondonnee(0, 5);
+      don6.insertiondonnee(0, 8);
+      don7.insertiondonnee(0, 7);
+      don8.insertiondonnee(0, 7);
+      don9.insertiondonnee(0, 8);
+      don10.insertiondonnee(0, 8);
+      don11.insertiondonnee(0, 4);
+      don12.insertiondonnee(0, 7);
+      don13.insertiondonnee(0, 1);
+      don14.insertiondonnee(0, 3);
+      don15.insertiondonnee(0, 9);
+      don16.insertiondonnee(0, 4);
+      don17.insertiondonnee(0, 7);
+      don18.insertiondonnee(0, 1);
+      don19.insertiondonnee(0, 2);
+      
+      Block Bk0 = new Block();
+      Bk0.set(0, 5);
+      Block Bk1 = new Block();
+      Bk1.set(1, 5);
+      Block Bk2 = new Block();
+      Bk2.set(2, 5);
+      Block Bk3 = new Block();
+      Bk3.set(3, 5);
+      
+      Bk0.integration(0, don0);
+      Bk0.integration(1, don1);
+      Bk0.integration(2, don2);
+      Bk0.integration(3, don3);
+      Bk0.integration(4, don4);
+      Bk1.integration(0, don5);
+      Bk1.integration(1, don6);
+      Bk1.integration(2, don7);
+      Bk1.integration(3, don8);
+      Bk1.integration(4, don9);
+      Bk2.integration(0, don10);
+      Bk2.integration(1, don11);
+      Bk2.integration(2, don12);
+      Bk2.integration(3, don13);
+      Bk2.integration(4, don14);
+      Bk3.integration(0, don15);
+      Bk3.integration(1, don16);
+      Bk3.integration(2, don17);
+      Bk3.integration(3, don18);
+      Bk3.integration(4, don19);
+      
+      newbase.add(Bk0);
+      newbase.add(Bk1);
+      newbase.add(Bk2);
+      newbase.add(Bk3);
+      
+      Sequenceblock Seq=new Sequenceblock();
+      Seq.set(0, 0, 3);
+      Sequenceblock Seq2=new Sequenceblock();
+      Seq2.set(3, 3, 2);
+      
+      Table Table1ex2 = new Table();
+      Table1ex2.set("Premiere table ex2", 1);
+      Table1ex2.integration(0, S1);
+      Table Table2ex2 = new Table();
+      Table2ex2.set("Seconde table ex2", 1);
+      Table2ex2.integration(0, S1);
+      
+      
+      //Création mémoire centrale et buffer
+      Memoirecentrale Centraleex2 = new Memoirecentrale();
+      Centraleex2.set(2, base);
      
+      Buffer buff0ex2=new Buffer();
+      buff0ex2.set(0, 1);
+      Centrale.composition(0, buff0ex2);
+      Buffer buff1ex2=new Buffer();
+      buff1ex2.set(1, 1);
+      Centrale.composition(1, buff1ex2);
+      
+      // Hashage des tables
+      Hashage hashex2 = new Hashage();
+      /*
+      hashex2.set(Table1ex2, Centraleex2);
+      Centrale.chargement(T, hashex2);
+      Tablehash Table1ex2H = Centraleex2.chargementbucket(Table1ex2);*/
+      
+      hashex2.set(Table2ex2, Centraleex2);
+      Centrale.chargement(T, hashex2);
+      
+      System.out.println("Quiquibug?");
+      Tablehash Table2ex2H = Centraleex2.chargementbucket(Table2ex2);
    }
   
 }

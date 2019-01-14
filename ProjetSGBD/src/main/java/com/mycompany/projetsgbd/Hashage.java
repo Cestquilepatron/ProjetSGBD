@@ -28,7 +28,7 @@ public class Hashage {
                 }
             case "pair":
                 if (cible !=2){
-                   int num = don.lecturedonneepremier(rangcible);
+                   int num = don.clef();
                    int result = num % 2;
                    don.hasher(result); 
                 }

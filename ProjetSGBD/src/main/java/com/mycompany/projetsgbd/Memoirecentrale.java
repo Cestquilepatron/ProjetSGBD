@@ -39,6 +39,7 @@ public class Memoirecentrale {
     public void chargement (Table tab,Hashage H){
         int parcourtab = 0;
         while (parcourtab < tab.taille()){//parcours de la table
+            
             for (int i=0 ; i < nbbuffer ;i++ ){//chargement des blocs dans les buffers
                 try{
                     if (i!=0 && this.Memoire[(i-1)%(nbbuffer-1)].indiceseqrestante()!=0){//Vérification de si la sequence est entierement chargé
@@ -46,8 +47,9 @@ public class Memoirecentrale {
                         this.Memoire[i].chargementseq(tab.liaison(parcourtab), base,this.Memoire[(i-1)%(nbbuffer-1)].indiceseqrestante());
                     }
                     else{
-                        System.out.println("chargement buffer "+i);
+                        
                         this.Memoire[i].chargementseq(tab.liaison(parcourtab),base,0);
+                        System.out.println("chargement buffer "+i);
                         parcourtab++;
                         
                     }
@@ -132,7 +134,7 @@ public class Memoirecentrale {
                 }
                 try{
                     J.jointure();
-                    System.out.println("jointure" +parcourstabdeux+" "+parcourstab);
+                    //System.out.println("jointure" +parcourstabdeux+" "+parcourstab);
                 }catch (Exception e){}
                 
             }while(parcourstabdeux < tabdeux.taille());
