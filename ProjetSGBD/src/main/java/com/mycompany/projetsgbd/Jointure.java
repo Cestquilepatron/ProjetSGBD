@@ -51,7 +51,19 @@ public class Jointure {
                             Random rand= new Random();
                             int nbaupif = rand.nextInt(100000000);
                             don.set(nbaupif, concat, motconcat);
-                            int[] Seq=tab.liaison(0).get();
+                            int[] Seq=this.tab.liaison(0).get();
+                            Block bloc= this.mem.base().research(Seq[1]+Seq[2]-1);
+                            if (!bloc.remplis()){
+                                bloc.integration2(don);
+                            }
+                            else{
+                                Block bloc2= new Block();
+                                bloc2.set(Seq[1]+Seq[2], 2);
+                                this.tab.liaison(0).agrandissement();
+                                bloc2.integration2(don);
+                                this.mem.base().add(bloc2);
+                                
+                            }
 
                         }
 

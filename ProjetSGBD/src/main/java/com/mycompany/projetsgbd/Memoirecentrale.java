@@ -32,6 +32,10 @@ public class Memoirecentrale {
         return this.nbbuffer;
     }
     
+    public Basededonnees base(){
+        return this.base ;
+    }
+    
     public void chargement (Table tab,Hashage H){
         int parcourtab = 0;
         while (parcourtab < tab.taille()){//parcours de la table
@@ -109,11 +113,6 @@ public class Memoirecentrale {
     
     
     public void chargement (Tablehash tab, Tablehash tabdeux,Jointure J){
-        //creation table jointure
-        Table jointure= new Table();
-        String nomjointure= "jointure "+ tab.get() +" "+tabdeux.get();
-        jointure.set(nomjointure, 1);
-        //
         int parcourstab=0;
         int parcourstabdeux=0;
        do {

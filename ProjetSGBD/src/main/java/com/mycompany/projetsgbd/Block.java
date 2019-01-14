@@ -13,6 +13,7 @@ public class Block {
     private  int nb;
     private  int taille;
     private  Donnees Don [];
+    private int curseur;
     
     public void set(int num, int taille){
         this.nb=num;
@@ -20,7 +21,17 @@ public class Block {
         this.Don = new Donnees [taille];
     }
     public void integration(int place,Donnees a){
-        this.Don[place]= a;
+        this.Don[place]= a; 
+        this.curseur=this.curseur+1;
+    }
+    
+    public void integration2(Donnees a){
+        this.Don[curseur]= a; 
+        this.curseur=this.curseur+1;
+    }
+    
+    public boolean remplis(){
+        return curseur==taille;
     }
     
     public Donnees utilisation(int place){

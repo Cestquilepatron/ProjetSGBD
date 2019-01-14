@@ -129,6 +129,19 @@ public class Simulation {
       B6.set(6, 2);
       B6.integration(0, A15);
       B6.integration(1, A16);
+      Block B7=new Block();
+      B7.set(7, 2);
+      B7.integration(0,A17);
+      B7.integration(1, A18);
+      Block B8=new Block();
+      B8.set(8, 2);
+      B8.integration(0, A19);
+      B8.integration(1, A20);
+      Block B9 = new Block();
+      B9.set(9, 2);
+      B9.integration(0, A21);
+      B9.integration(1, A22);
+      
       
       B2.affiche();
       B.affiche();
@@ -140,49 +153,65 @@ public class Simulation {
       base.add(B4);
       base.add(B5);
       base.add(B6);
-      
+      base.add(B7);
+      base.add(B8);
+      base.add(B9);
       System.out.println(" La base contient maintenant "+base.get() +" bloc de donnée");
       
      //Création d'une séquence
+     Sequenceblock S=new Sequenceblock();
+     S.set(3, 0, 1);
      Sequenceblock S1= new Sequenceblock();
      S1.set(0,1,3);
      Sequenceblock S2= new Sequenceblock();
      S2.set(1,5,2);
      S1.affiche();
      
+     Sequenceblock S3= new Sequenceblock();
+     S3.set(2, 8, 2);
+     
+     Sequenceblock S4= new Sequenceblock();
+     S4.set(4, 4, 1);
+     
      //Création d'une table
      Table T = new Table();
-     T.set("Premieretable", 2);
+     T.set("Premieretable", 3);
      T.integration(0, S1);
      T.integration(1, S2);
+     T.integration(2, S);
      T.affiche();
+     
+     Table T2= new Table();
+     T2.set("2emetable", 2);
+     T2.integration(0, S3);
+     T2.integration(1, S4);
      
      //Création buffer et mémoire centrale
      Memoirecentrale Centrale = new Memoirecentrale();
      Centrale.set(6, base);
      
      Buffer buff0=new Buffer();
-     buff0.set(0, 4);
+     buff0.set(0, 2);
      Centrale.composition(0, buff0);
      
      Buffer buff1=new Buffer();
-     buff0.set(1, 4);
+     buff0.set(1, 2);
      Centrale.composition(1, buff1);
      
      Buffer buff2=new Buffer();
-     buff0.set(2, 4);
+     buff0.set(2, 2);
      Centrale.composition(2, buff2);
      
      Buffer buff3=new Buffer();
-     buff0.set(3, 4);
+     buff0.set(3, 2);
      Centrale.composition(3, buff3);
      
      Buffer buff4=new Buffer();
-     buff0.set(4, 4);
+     buff0.set(4, 2);
      Centrale.composition(4, buff4);
      
      Buffer buff5=new Buffer();
-     buff0.set(5, 4);
+     buff0.set(5, 2);
      Centrale.composition(5, buff5);
      
      System.out.println("Nombre de buffer dans la mémoire centrale :" + Centrale.get() );
@@ -190,12 +219,35 @@ public class Simulation {
      Hashage hash = new Hashage();
      hash.set(T, Centrale);
      Centrale.chargement(T, hash);
-     System.out.println("clef de A : "+ A.clef());
+     System.out.println("clef de A2 : "+ A2.clef());
+     
+     hash.set(T2,Centrale);
+     Centrale.chargement(T2, hash);
      
      
      Tablehash tabhash= Centrale.chargementbucket(T);
      tabhash.affiche();
      
+     Tablehash tablehash = Centrale.chargementbucket(T2);
+     
+     //création de la table de jointure
+      Table jointure= new Table();
+      String nomjointure= "jointure "+ tabhash.get() +" "+tablehash.get();
+      jointure.set(nomjointure, 1);
+      Sequenceblock Seqjoin= new Sequenceblock();
+      Seqjoin.set(base.get(),base.get(),1);
+      Block b=new Block();
+      b.set(base.get(), 4);
+      jointure.integration(0, Seqjoin);
+      
+      Jointure Join = new Jointure();
+      Join.set(jointure, Centrale);
+      Centrale.chargement(tabhash, tablehash, Join);
+      
+      System.out.println("Marche : ");
+      jointure.affiche();
+      
+      base.research(10).affiche();
      
    }
   
