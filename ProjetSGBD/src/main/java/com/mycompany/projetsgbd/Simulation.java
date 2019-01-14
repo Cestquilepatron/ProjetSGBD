@@ -238,7 +238,10 @@ public class Simulation {
       Seqjoin.set(base.get(),base.get(),1);
       Block b=new Block();
       b.set(base.get(), 4);
+      base.add(b);
       jointure.integration(0, Seqjoin);
+      
+
       
       Jointure Join = new Jointure();
       Join.set(jointure, Centrale);

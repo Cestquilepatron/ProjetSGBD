@@ -30,6 +30,6 @@ public class Sequenceblock {
     }
     
     public void agrandissement(){
-        this.taille = this.taille++;
+        this.taille = this.taille+1;
     }
 }

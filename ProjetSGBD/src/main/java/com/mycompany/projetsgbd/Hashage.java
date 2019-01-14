@@ -26,10 +26,16 @@ public class Hashage {
                     int result = num % nb;
                     don.hasher(result);
                 }
+            case "pair":
+                if (cible !=2){
+                   int num = don.lecturedonneepremier(rangcible);
+                   int result = num % 2;
+                   don.hasher(result); 
+                }
         }
     }
     
-    public void fonctiondehachage (){
+    public void fonctiondehachage (String s){
         for (int i=0; i<mem.get ();i++){
             try{
                 Buffer buff=mem.utilisation(i);
@@ -37,7 +43,7 @@ public class Hashage {
                     Block bloc = buff.dechargement(j);
                     for (int parcour = 0; parcour<bloc.taille();parcour++){
                         Donnees donne = bloc.utilisation(parcour);
-                        hash("modulo",donne,1,0,5);
+                        hash(s,donne,1,0,5);
                     }
                 }
             }catch(Exception e){System.out.println("Buffer" +i+" vide");}

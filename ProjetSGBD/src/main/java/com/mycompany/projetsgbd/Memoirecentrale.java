@@ -54,14 +54,14 @@ public class Memoirecentrale {
                 }catch(Exception e){System.out.println("chargement fail à l'étape "+i+" tab chargé jusqu'à la séquence "+parcourtab+ " sur une taille de tab de"+ tab.taille());}
             }
             //tout les buffers sont chargés, mais la table ne tient pas dans la memoire centrale, donc on hache les buffers puis on les reremplis
-            H.fonctiondehachage();
+            H.fonctiondehachage("pair");
         }
-        H.fonctiondehachage(); //hachage en sortie de while pour finir la table
+        H.fonctiondehachage("pair"); //hachage en sortie de while pour finir la table
     }
     
     public Tablehash chargementbucket(Table T){
         Tablehash tabhash=new Tablehash();
-        tabhash.set(T.get(), 1000);
+        tabhash.set(T.get(), 50);
         int parcourstab=0;
         while (parcourstab < T.taille()){//parcours de la table
             for (int i=0 ; i < nbbuffer ;i++ ){//chargement des blocs dans les buffers
@@ -122,7 +122,7 @@ public class Memoirecentrale {
                     parcourstab++;
                 }catch(Exception e){}
             }
-             do {
+            do {
                 for (int j=this.nbbuffer/2;j<this.nbbuffer;j++){
                     try{
                         this.Memoire[j].chargement2(tab.liaison(parcourstabdeux));
@@ -132,9 +132,11 @@ public class Memoirecentrale {
                 }
                 try{
                     J.jointure();
+                    System.out.println("jointure" +parcourstabdeux+" "+parcourstab);
                 }catch (Exception e){}
                 
             }while(parcourstabdeux < tabdeux.taille());
+            parcourstabdeux=0;
         }while (parcourstab < tab.taille());
         
     }
