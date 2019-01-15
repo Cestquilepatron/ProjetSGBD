@@ -62,17 +62,17 @@ public class Basededonnees {
         return b;
     }
     
-    public Bucket researchclef (int indice){
+    public Bucket researchclef (int clef){
         for (int i = 0 ; i<=this.nbbucket ; i++)
         {
             if (this.basedetri[this.nbbucket-i]!=null){
-                if (this.basedetri[this.nbbucket-i].clef() == indice) {
-                    return this.basedetri[i];
+                if (this.basedetri[this.nbbucket-i].clef() == clef) {
+                    return this.basedetri[this.nbbucket-i];
                 }
             }
         }
         Bucket b = new Bucket();
-        b.set(nbbucket, 1,indice);
+        b.set(nbbucket, 1,clef);
         this.basedetri[nbbucket] = b;
         this.nbbucket= this.nbbucket +1;
         return b;

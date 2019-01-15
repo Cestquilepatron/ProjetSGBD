@@ -40,13 +40,17 @@ public class Jointure {
                             int[] entier1 = buc1.utilisation(parcour).lectureentier() ;
                             int[] entier2 = buc2.utilisation(parcours).lectureentier();
                             int[] concat = new int [entier1.length+entier2.length];
+                            
                             System.arraycopy(entier1, 0, concat, 0, entier1.length);
                             System.arraycopy(entier2, 0, concat, entier1.length, entier2.length);
+                            
                             String[] string1 = buc1.utilisation(parcour).lecturestring() ;
                             String[] string2 = buc2.utilisation(parcours).lecturestring();
                             String[] motconcat = new String [string1.length+string2.length];
+                            
                             System.arraycopy(string1, 0, motconcat, 0, string1.length);
                             System.arraycopy(string2, 0, motconcat, string1.length, string2.length);
+                            
                             Donnees don = new Donnees();
                             Random rand= new Random();
                             int nbaupif = rand.nextInt(100000000);

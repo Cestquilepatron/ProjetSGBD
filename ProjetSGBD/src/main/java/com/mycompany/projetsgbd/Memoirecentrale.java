@@ -53,9 +53,8 @@ public class Memoirecentrale {
                         }
                     }
                     else{
-                        System.out.println("chargement buffer? "+i);System.out.println("buffer"+(i-1)%(nbbuffer-1)+" indice "+this.Memoire[(i-1)%(nbbuffer-1)].indiceseqrestante()+" "+this.Memoire[(i-1)%(nbbuffer-1)].Seqfinie());
+                        System.out.println("chargement buffer "+i);
                         this.Memoire[i].chargementseq(tab.liaison(parcourtab),this.base,0);
-                        System.out.println("chargement buffer reussi ");
                         if (this.Memoire[i].Seqfinie()){
                             System.out.println("\n\n\n\n\n\n\n parcours en cours \n\n\n\n\n");
                             parcourtab++;
@@ -117,9 +116,10 @@ public class Memoirecentrale {
                             boolean pascomplet = buck.pascomplet();
                             boolean associe=tabhash.get().equals(buck.tableassocie());
                             boolean nonlie=buck.tableassocie().equals("");
-                            if ( pascomplet && (associe|| nonlie)){//buck n'est pas complet, est bien lié à tabhash ou lié à aucune table
+                           // boolean clef = donne.clef()==buck.clef();
+                            if ( pascomplet && (associe|| nonlie) ){//buck n'est pas complet, est bien lié à tabhash ou lié à aucune table
                                buck.integration(donne,tabhash.get());
-                               System.out.println("mise dans bucket "+ buck.get()+"réussi pour l'étape "+parcour +"alors que"+buck.place()+" "+buck.pascomplet()); 
+                               System.out.println("mise dans bucket "+ buck.get()+"de clef "+buck.clef()+" réussi pour l'étape "+parcour +"alors que"+buck.place()+" "+buck.pascomplet()+"et que clef données="+donne.clef()); 
                             }
                             else{
                                 buck.set(base.get2(), 5, donne.clef());

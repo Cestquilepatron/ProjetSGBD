@@ -58,9 +58,7 @@ public class Buffer {
         int indice=tab[1];
         int taille = tab[2];
         if (taille<= this.capacite){//une sequence charger dans un buffer
-            System.out.println("entrée réussi" +taille + indice);
             for (int i=0; i<taille;i++){
-                System.out.println("boucle " +i);
                this.contenu[i]= Basede.research(indice+i);
             }
             this.sequencefinie =true;
@@ -85,7 +83,6 @@ public class Buffer {
                 this.sequencefinie =true;
                 this.nbblocseq = 0;
             }
-            System.out.println("sequence trop grande sortie réussi");
         }
         
     }

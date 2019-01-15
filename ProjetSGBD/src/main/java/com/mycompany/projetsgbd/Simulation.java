@@ -12,7 +12,6 @@ package com.mycompany.projetsgbd;
 public class Simulation {
     
   public static void  main (String [] args){
-
       
       //Création base de données
       Basededonnees base = new Basededonnees();
