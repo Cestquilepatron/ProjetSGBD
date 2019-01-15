@@ -83,7 +83,7 @@ public class Donnees {
     }
     
     public void affiche(){
-        System.out.println("donnée affiche: ");
+        System.out.println("donnée "+ this.Cleprimaire +" affiche: ");
         int tab [] = new int[3];
         tab = this.get();
         if (tab[1]==1){

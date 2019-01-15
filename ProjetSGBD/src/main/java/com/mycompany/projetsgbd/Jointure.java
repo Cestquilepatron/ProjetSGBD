@@ -63,7 +63,7 @@ public class Jointure {
                             }
                             else{
                                 Block bloc2= new Block();
-                                bloc2.set(Seq[1]+Seq[2], 2);
+                                bloc2.set(Seq[1]+Seq[2], 4);
                                 this.tab.liaison(0).agrandissement();
                                 bloc2.integration2(don);
                                 this.mem.base().add(bloc2);

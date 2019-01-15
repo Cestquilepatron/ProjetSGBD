@@ -107,4 +107,11 @@ public class Buffer {
     public int get(){
         return this.id;
     }
+    
+    public void videBuff(){
+        this.contenu= new Block[this.capacite];
+        this.contient=new Bucket();
+        this.sequencefinie = true;
+        this.nbblocseq = 0;
+    }
 }

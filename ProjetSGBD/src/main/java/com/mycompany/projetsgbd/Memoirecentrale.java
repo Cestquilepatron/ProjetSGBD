@@ -69,6 +69,9 @@ public class Memoirecentrale {
         }
         H.fonctiondehachage();//hachage en sortie de while pour finir la table
         System.out.println("\n \n \n \n Fin hachage\n \n \n");
+        for (int i=0 ; i < this.nbbuffer ;i++ ){
+            this.Memoire[i].videBuff();
+        }
     }
     
     public Tablehash chargementbucket(Table T){
@@ -101,6 +104,9 @@ public class Memoirecentrale {
         }
         remplissagebucket(tabhash);
         System.out.println("\n \n \n Fin mise en bucket\n \n \n");
+        for (int i=0 ; i < this.nbbuffer ;i++ ){
+            this.Memoire[i].videBuff();
+        }
         return tabhash;
     }
     
@@ -116,8 +122,8 @@ public class Memoirecentrale {
                             boolean pascomplet = buck.pascomplet();
                             boolean associe=tabhash.get().equals(buck.tableassocie());
                             boolean nonlie=buck.tableassocie().equals("");
-                           // boolean clef = donne.clef()==buck.clef();
-                            if ( pascomplet && (associe|| nonlie) ){//buck n'est pas complet, est bien lié à tabhash ou lié à aucune table
+                            boolean clef = donne.clef()==buck.clef();
+                            if ( pascomplet && (associe|| nonlie) && clef ){//buck n'est pas complet, est bien lié à tabhash ou lié à aucune table
                                buck.integration(donne,tabhash.get());
                                System.out.println("mise dans bucket "+ buck.get()+"de clef "+buck.clef()+" réussi pour l'étape "+parcour +"alors que"+buck.place()+" "+buck.pascomplet()+"et que clef données="+donne.clef()); 
                             }
@@ -140,7 +146,7 @@ public class Memoirecentrale {
                             }
                     }
                 }
-            }catch(Exception e){System.out.println(e+" Erreur mise dans bucket du bloc "+i);}
+            }catch(Exception e){System.out.println(e+" Erreur mise dans bucket du buffer "+i);}
         }
     }
     
@@ -171,6 +177,10 @@ public class Memoirecentrale {
             }while(parcourstabdeux < tabdeux.taille());
             parcourstabdeux=0;
         }while (parcourstab < tab.taille());
-        
+       
+       System.out.println("\n Fin JOINTURE \n");
+        for (int i=0 ; i < this.nbbuffer ;i++ ){
+            this.Memoire[i].videBuff();
+        }
     }
 }
