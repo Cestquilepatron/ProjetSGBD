@@ -25,8 +25,10 @@ public class Tablehash {
     
     
     public void integration(Bucket a){
-        this.espacealloue[this.curseur]= a;
-        this.curseur = this.curseur+1;
+        if (a.tableassocie().equals(this.nom)){
+            this.espacealloue[this.curseur]= a;
+            this.curseur = this.curseur+1;
+        }   
     }
     
     public String get(){

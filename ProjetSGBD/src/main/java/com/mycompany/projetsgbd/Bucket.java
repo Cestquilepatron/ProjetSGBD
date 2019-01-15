@@ -15,6 +15,7 @@ public class Bucket {
     private  Donnees Don [];
     private int nbdedonnees;//curseur pour placer les données.
     private int clefdehash;
+    private String tablassocie;
     
     public void set(int num, int taille,int clef){
         this.nb=num;
@@ -22,13 +23,15 @@ public class Bucket {
         this.Don = new Donnees [taille];
         this.clefdehash = clef;
         this.nbdedonnees = 0;
+        this.tablassocie = "";
     }
-    public void integration(Donnees a){
+    public void integration(Donnees a,String nomtable){
         if (a.clef()==this.clefdehash){
+            if (this.tablassocie.equals("")){this.tablassocie = nomtable;}
             this.Don[nbdedonnees]= a;
-            this.nbdedonnees = this.nbdedonnees +1;
+            this.nbdedonnees = this.nbdedonnees+1;
         } 
-    }
+    } 
     
     public Donnees utilisation(int place){
        return this.Don[place];
@@ -36,16 +39,23 @@ public class Bucket {
     
     public void affiche(){
         try{
-            System.out.println("Bucket n:"+this.nb+" de taille:"+this.taille +" de clef " + this.clefdehash);
+            System.out.println("Bucket n:"+this.nb+" de taille:"+this.taille +"associé à la table"+this.tablassocie+" de clef " + this.clefdehash);
             for( int i = 0 ; i<taille; i++){
                 this.Don[i].affiche();
-                System.out.println("boucle jusqu'à " +i);
             }
         }catch(Exception e){System.out.println("bucket non def");}
     }
     
     public int taille(){
         return this.taille;
+    }
+    
+    public boolean pascomplet(){
+        return nbdedonnees<=taille;
+    }
+    
+    public int place(){
+        return this.nbdedonnees;
     }
     
     public int clef(){
@@ -55,5 +65,9 @@ public class Bucket {
     public int get(){
         //int tab [] = new int [] {nb , taille};
         return this.nb;
+    }
+    
+    public String tableassocie(){
+        return this.tablassocie;
     }
 }

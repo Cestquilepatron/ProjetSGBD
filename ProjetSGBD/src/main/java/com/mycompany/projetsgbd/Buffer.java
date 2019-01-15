@@ -52,47 +52,55 @@ public class Buffer {
         return this.remplissage;
     }
     
-    public void chargementseq(Sequenceblock seq, Basededonnees base,int repriseseq){
+    public void chargementseq(Sequenceblock seq, Basededonnees Basede,int repriseseq){
+        System.out.println("entrée réussi");
         int [] tab = seq.get();
         int indice=tab[1];
         int taille = tab[2];
-        if (taille< this.capacite){//une sequence charger dans un buffer
+        if (taille<= this.capacite){//une sequence charger dans un buffer
             System.out.println("entrée réussi" +taille + indice);
             for (int i=0; i<taille;i++){
                 System.out.println("boucle " +i);
-               this.contenu[i]= base.research(indice+i);
+               this.contenu[i]= Basede.research(indice+i);
             }
             this.sequencefinie =true;
             this.nbblocseq= 0;
             System.out.println("boucle fini");
         }
         else{//une sequence qui ne tient pas dans un buffer
-            if (repriseseq+capacite < taille){//une sequence charger dans un buffer mais ou il reste des parties à charger
-                for (int i=0; i<capacite;i++){
-                    this.contenu[i]= base.research(indice+i+repriseseq);
+            System.out.println(repriseseq+" " + this.capacite+" " +taille);
+            if (repriseseq+this.capacite < taille){System.out.println("sequence trop grande1");//une sequence charger dans un buffer mais ou il reste des parties à charger
+                for (int i=0; i<this.capacite;i++){
+                    this.contenu[i]= Basede.research(indice+i+repriseseq);
                 }
                 this.sequencefinie =false;
-                this.nbblocseq = repriseseq + this.capacite;
+                this.nbblocseq = repriseseq + this.capacite; System.out.println(this.capacite+"indice passé="+this.nbblocseq);
             }
-            else{//fin de chargement d'une sequence
+            else{System.out.println("sequence trop grande2");//fin de chargement d'une sequence
                 for (int i=0; i<taille-repriseseq;i++){
-                    this.contenu[i]= base.research(indice+i+repriseseq);
+                    try{
+                    this.contenu[i]= Basede.research(indice+i+repriseseq);
+                    }catch(Exception e){System.out.println(e+" "+indice+" "+i+" "+repriseseq);}
                 }
                 this.sequencefinie =true;
                 this.nbblocseq = 0;
             }
-
+            System.out.println("sequence trop grande sortie réussi");
         }
         
     }
     
     public int indiceseqrestante(){
         if (this.sequencefinie){
-            return this.nbblocseq;
-        }
-        else {
             return 0;
         }
+        else {
+            return this.nbblocseq;
+        }
+    }
+    
+    public boolean Seqfinie(){
+        return this.sequencefinie;
     }
     
     public int taille(){

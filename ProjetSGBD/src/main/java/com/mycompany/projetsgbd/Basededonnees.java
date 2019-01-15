@@ -47,18 +47,34 @@ public class Basededonnees {
     }
     
     public Bucket research2 (int indice){
-        for (int i =0 ; i<=nbbucket ; i++)
+        for (int i = 0 ; i<=this.nbbucket ; i++)
         {
-            if (this.basedetri[i].get() == indice) {
-                return this.basedetri[i];
+            if (this.basedetri[this.nbbucket-i]!=null){
+                if (this.basedetri[this.nbbucket-i].get() == indice) {
+                    return this.basedetri[i];
+                }
             }
         }
         Bucket b = new Bucket();
-        b.set(1000000000, 1,-1);
-        Donnees Err = new Donnees();
-        Err.set(1000000000, 0, 1);
-        Err.insertiondonnee(0, "Erreur, bloc non-existant");
-        b.integration(Err);
+        b.set(nbbucket, 1,indice);
+        this.basedetri[nbbucket] = b;
+        this.nbbucket= this.nbbucket +1;
+        return b;
+    }
+    
+    public Bucket researchclef (int indice){
+        for (int i = 0 ; i<=this.nbbucket ; i++)
+        {
+            if (this.basedetri[this.nbbucket-i]!=null){
+                if (this.basedetri[this.nbbucket-i].clef() == indice) {
+                    return this.basedetri[i];
+                }
+            }
+        }
+        Bucket b = new Bucket();
+        b.set(nbbucket, 1,indice);
+        this.basedetri[nbbucket] = b;
+        this.nbbucket= this.nbbucket +1;
         return b;
     }
     

@@ -23,7 +23,9 @@ public class Jointure {
             for(int j=this.mem.get()/2;j<mem.get();j++){
                 try{
                     join(this.mem.utilisation(i),this.mem.utilisation(j));
-                }catch(Exception e){}
+                }catch(Exception e){
+                    //System.out.println(e);
+                }
             }
 
         }

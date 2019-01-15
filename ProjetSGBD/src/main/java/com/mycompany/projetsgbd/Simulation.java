@@ -12,6 +12,8 @@ package com.mycompany.projetsgbd;
 public class Simulation {
     
   public static void  main (String [] args){
+
+      
       //Création base de données
       Basededonnees base = new Basededonnees();
       base.set(100);
@@ -195,40 +197,42 @@ public class Simulation {
      Centrale.composition(0, buff0);
      
      Buffer buff1=new Buffer();
-     buff0.set(1, 2);
+     buff1.set(1, 2);
      Centrale.composition(1, buff1);
      
      Buffer buff2=new Buffer();
-     buff0.set(2, 2);
+     buff2.set(2, 2);
      Centrale.composition(2, buff2);
      
      Buffer buff3=new Buffer();
-     buff0.set(3, 2);
+     buff3.set(3, 2);
      Centrale.composition(3, buff3);
      
      Buffer buff4=new Buffer();
-     buff0.set(4, 2);
+     buff4.set(4, 2);
      Centrale.composition(4, buff4);
      
      Buffer buff5=new Buffer();
-     buff0.set(5, 2);
+     buff5.set(5, 2);
      Centrale.composition(5, buff5);
      
      System.out.println("Nombre de buffer dans la mémoire centrale :" + Centrale.get() );
      
      Hashage hash = new Hashage();
-     hash.set(T, Centrale);
+     hash.set(T, Centrale,"modulo",1,0,5);
      Centrale.chargement(T, hash);
      System.out.println("clef de A2 : "+ A2.clef());
      
-     hash.set(T2,Centrale);
+     hash.set(T2,Centrale,"modulo",1,0,5);
      Centrale.chargement(T2, hash);
      
      
      Tablehash tabhash= Centrale.chargementbucket(T);
-     tabhash.affiche();
-     
      Tablehash tablehash = Centrale.chargementbucket(T2);
+     
+     tabhash.affiche();
+     tablehash.affiche();
+     System.out.println();
      
      //création de la table de jointure
       Table jointure= new Table();
@@ -249,15 +253,24 @@ public class Simulation {
       
       System.out.println("Jointure obtenue : ");
       jointure.affiche();
-      
-      base.research(10).affiche();
-      
+    
+    base.research(10).affiche();
+    base.research(11).affiche();
+    base.research2(3).affiche();
+     /* try{
+      for (int i = 0; i< base.get();i++){
+          base.research(i).affiche();
+          base.research2(i).affiche();
+      } 
+      }catch(Exception e){System.out.println(e );}*/
+     
+      /*
       //*************************************************************************************************
       // 2eme exemple
       //********************************************************
-      System.out.println();
+      System.out.println("\n \n \n");
       System.out.println("2ème exemple");
-      System.out.println();
+      System.out.println("\n \n \n");
       
       Basededonnees newbase = new Basededonnees();
       newbase.set(100);
@@ -368,35 +381,33 @@ public class Simulation {
       
       Table Table1ex2 = new Table();
       Table1ex2.set("Premiere table ex2", 1);
-      Table1ex2.integration(0, S1);
+      Table1ex2.integration(0, Seq);
       Table Table2ex2 = new Table();
       Table2ex2.set("Seconde table ex2", 1);
-      Table2ex2.integration(0, S1);
+      Table2ex2.integration(0, Seq2);
       
       
       //Création mémoire centrale et buffer
       Memoirecentrale Centraleex2 = new Memoirecentrale();
-      Centraleex2.set(2, base);
+      Centraleex2.set(2, newbase);
      
       Buffer buff0ex2=new Buffer();
       buff0ex2.set(0, 1);
-      Centrale.composition(0, buff0ex2);
+      Centraleex2.composition(0, buff0ex2);
       Buffer buff1ex2=new Buffer();
       buff1ex2.set(1, 1);
-      Centrale.composition(1, buff1ex2);
+      Centraleex2.composition(1, buff1ex2);
       
       // Hashage des tables
       Hashage hashex2 = new Hashage();
-      /*
+      
       hashex2.set(Table1ex2, Centraleex2);
-      Centrale.chargement(T, hashex2);
-      Tablehash Table1ex2H = Centraleex2.chargementbucket(Table1ex2);*/
+      Centraleex2.chargement(Table1ex2, hashex2);
+      Tablehash Table1ex2H = Centraleex2.chargementbucket(Table1ex2);
       
       hashex2.set(Table2ex2, Centraleex2);
-      Centrale.chargement(T, hashex2);
-      
-      System.out.println("Quiquibug?");
-      Tablehash Table2ex2H = Centraleex2.chargementbucket(Table2ex2);
+      Centraleex2.chargement(Table2ex2, hashex2);
+      Tablehash Table2ex2H = Centraleex2.chargementbucket(Table2ex2);*/
    }
   
 }

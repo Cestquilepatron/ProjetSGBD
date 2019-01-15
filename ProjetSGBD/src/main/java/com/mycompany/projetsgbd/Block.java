@@ -41,7 +41,9 @@ public class Block {
     public void affiche(){
         System.out.println("Block n:"+this.nb+" de taille:"+this.taille);
         for( int i = 0 ; i<taille; i++){
-            this.Don[i].affiche();
+           try{
+               this.Don[i].affiche();
+           }catch (Exception e){}
         }
     }
     

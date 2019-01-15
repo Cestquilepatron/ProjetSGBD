@@ -38,53 +38,70 @@ public class Memoirecentrale {
     
     public void chargement (Table tab,Hashage H){
         int parcourtab = 0;
+        System.out.println("\n \n \n \n Début hachage\n \n \n");
+        
         while (parcourtab < tab.taille()){//parcours de la table
             
-            for (int i=0 ; i < nbbuffer ;i++ ){//chargement des blocs dans les buffers
-                try{
-                    if (i!=0 && this.Memoire[(i-1)%(nbbuffer-1)].indiceseqrestante()!=0){//Vérification de si la sequence est entierement chargé
-                        System.out.println("charge buffer "+i);
-                        this.Memoire[i].chargementseq(tab.liaison(parcourtab), base,this.Memoire[(i-1)%(nbbuffer-1)].indiceseqrestante());
+            for (int i=0 ; i < this.nbbuffer ;i++ ){//chargement des blocs dans les buffers
+                try{         
+                    if ((i!=0||parcourtab!=0) && !(this.Memoire[(i-1)%(this.nbbuffer-1)].Seqfinie())){//Vérification de si la sequence est entierement chargé
+                        System.out.println("charge buffer "+i);System.out.println("buffer"+(i-1)%(nbbuffer-1)+" indice "+this.Memoire[(i-1)%(nbbuffer-1)].indiceseqrestante()+" "+this.Memoire[(i-1)%(nbbuffer-1)].Seqfinie());
+                        this.Memoire[i].chargementseq(tab.liaison(parcourtab), this.base,this.Memoire[(i-1)%(this.nbbuffer-1)].indiceseqrestante());
+                        if (this.Memoire[i].Seqfinie()){
+                            System.out.println("\n\n\n\n\n\n\n parcours en cours \n\n\n\n\n");
+                            parcourtab++;
+                        }
                     }
                     else{
+                        System.out.println("chargement buffer? "+i);System.out.println("buffer"+(i-1)%(nbbuffer-1)+" indice "+this.Memoire[(i-1)%(nbbuffer-1)].indiceseqrestante()+" "+this.Memoire[(i-1)%(nbbuffer-1)].Seqfinie());
+                        this.Memoire[i].chargementseq(tab.liaison(parcourtab),this.base,0);
+                        System.out.println("chargement buffer reussi ");
+                        if (this.Memoire[i].Seqfinie()){
+                            System.out.println("\n\n\n\n\n\n\n parcours en cours \n\n\n\n\n");
+                            parcourtab++;
+                        }
                         
-                        this.Memoire[i].chargementseq(tab.liaison(parcourtab),base,0);
-                        System.out.println("chargement buffer "+i);
-                        parcourtab++;
                         
                     }
-                }catch(Exception e){System.out.println("chargement fail à l'étape "+i+" tab chargé jusqu'à la séquence "+parcourtab+ " sur une taille de tab de"+ tab.taille());}
+                }catch(Exception e){System.out.println("chargement pour hash fail à l'étape "+i+" tab chargé jusqu'à la séquence "+parcourtab+ " sur une taille de tab de"+ tab.taille());}
             }
             //tout les buffers sont chargés, mais la table ne tient pas dans la memoire centrale, donc on hache les buffers puis on les reremplis
-            H.fonctiondehachage("pair");
+            H.fonctiondehachage();
         }
-        H.fonctiondehachage("pair"); //hachage en sortie de while pour finir la table
+        H.fonctiondehachage();//hachage en sortie de while pour finir la table
+        System.out.println("\n \n \n \n Fin hachage\n \n \n");
     }
     
     public Tablehash chargementbucket(Table T){
         Tablehash tabhash=new Tablehash();
         tabhash.set(T.get(), 50);
         int parcourstab=0;
+        System.out.println("\n \n \n \n Début bucket\n \n \n");
         while (parcourstab < T.taille()){//parcours de la table
             for (int i=0 ; i < nbbuffer ;i++ ){//chargement des blocs dans les buffers
                 try{
                     if (i!=0 && this.Memoire[(i-1)%(nbbuffer-1)].indiceseqrestante()!=0){//Vérification de si la sequence est entierement chargé
                         System.out.println("charge buffer "+i);
-                        this.Memoire[i].chargementseq(T.liaison(parcourstab), base,this.Memoire[(i-1)%(nbbuffer-1)].indiceseqrestante());
+                        this.Memoire[i].chargementseq(T.liaison(parcourstab), this.base,this.Memoire[(i-1)%(nbbuffer-1)].indiceseqrestante());
+                        if(this.Memoire[i].Seqfinie()){
+                            parcourstab++;
+                        }
                     }
                     else{
                         System.out.println("chargement buffer "+i);
-                        this.Memoire[i].chargementseq(T.liaison(parcourstab),base,0);
-                        parcourstab++;
+                        this.Memoire[i].chargementseq(T.liaison(parcourstab),this.base,0);
+                        if (this.Memoire[i].Seqfinie()){
+                            parcourstab++;
+                        }
                         
                     }
-                }catch(Exception e){System.out.println("chargement fail à l'étape "+i+" tab chargé jusqu'à la séquence "+parcourstab+ " sur une taille de tab de"+ T.taille());}
+                }catch(Exception e){System.out.println("chargement pour mise dans bucket fail à l'étape "+i+" tab chargé jusqu'à la séquence "+parcourstab+ " sur une taille de tab de"+ T.taille());}
             }
             //tout les buffers sont chargés, mais la table ne tient pas dans la memoire centrale, donc on hache les buffers puis on les reremplis
            remplissagebucket(tabhash);
         }
         remplissagebucket(tabhash);
-        
+        System.out.println("\n \n \n Fin mise en bucket\n \n \n");
         return tabhash;
     }
     
@@ -96,20 +113,34 @@ public class Memoirecentrale {
                     for (int parcour = 0; parcour<bloc.taille();parcour++){
                         Donnees donne = bloc.utilisation(parcour);
                         try{
-                            Bucket buck=base.research2(donne.clef());
-                            buck.integration(donne);
-                            System.out.println("mise dans bucket "+ buck.get()+"réussi pour l'étape "+parcour);
+                            Bucket buck=base.researchclef(donne.clef());
+                            boolean pascomplet = buck.pascomplet();
+                            boolean associe=tabhash.get().equals(buck.tableassocie());
+                            boolean nonlie=buck.tableassocie().equals("");
+                            if ( pascomplet && (associe|| nonlie)){//buck n'est pas complet, est bien lié à tabhash ou lié à aucune table
+                               buck.integration(donne,tabhash.get());
+                               System.out.println("mise dans bucket "+ buck.get()+"réussi pour l'étape "+parcour +"alors que"+buck.place()+" "+buck.pascomplet()); 
+                            }
+                            else{
+                                buck.set(base.get2(), 5, donne.clef());
+                                buck.integration(donne,tabhash.get());
+                                base.add2(buck);
+                                tabhash.integration( buck);
+                                System.out.println(pascomplet+" "+associe+" "+nonlie+" création puis mise dans bucket "+base.get2()+"de clef"+donne.clef()+" réussi pour l'étape "+parcour);
+                            }
+                            
                         }catch(Exception e)
                            {
                                 Bucket buck = new Bucket();
                                 buck.set(base.get2(), 5, donne.clef());
+                                buck.integration(donne,tabhash.get());
                                 base.add2(buck);
                                 tabhash.integration( buck);
-                                System.out.println(e +" création puis mise dans bucket réussi pour l'étape "+parcour);
+                                System.out.println(e +" création puis mise dans bucket "+base.get2()+"de clef"+donne.clef()+" réussi pour l'étape "+parcour);
                             }
                     }
                 }
-            }catch(Exception e){System.out.println("Erreur mise dans bucket "+i);}
+            }catch(Exception e){System.out.println(e+" Erreur mise dans bucket du bloc "+i);}
         }
     }
     
