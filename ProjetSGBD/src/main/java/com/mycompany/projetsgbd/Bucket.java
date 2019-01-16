@@ -43,7 +43,8 @@ public class Bucket {
             for( int i = 0 ; i<taille; i++){
                 this.Don[i].affiche();
             }
-        }catch(Exception e){System.out.println("bucket non def");}
+        }catch(Exception e){System.out.println("fin du bucket "+this.nb);}
+        System.out.println();
     }
     
     public int taille(){

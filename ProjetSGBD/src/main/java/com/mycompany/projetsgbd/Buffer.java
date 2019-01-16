@@ -62,22 +62,20 @@ public class Buffer {
             }
             this.sequencefinie =true;
             this.nbblocseq= 0;
-            System.out.println("boucle fini");
         }
         else{//une sequence qui ne tient pas dans un buffer
-            System.out.println(repriseseq+" " + this.capacite+" " +taille);
-            if (repriseseq+this.capacite < taille){System.out.println("sequence trop grande1");//une sequence charger dans un buffer mais ou il reste des parties à charger
+            if (repriseseq+this.capacite < taille){;//une sequence charger dans un buffer mais ou il reste des parties à charger
                 for (int i=0; i<this.capacite;i++){
                     this.contenu[i]= Basede.research(indice+i+repriseseq);
                 }
                 this.sequencefinie =false;
-                this.nbblocseq = repriseseq + this.capacite; System.out.println(this.capacite+"indice passé="+this.nbblocseq);
+                this.nbblocseq = repriseseq + this.capacite;
             }
-            else{System.out.println("sequence trop grande2");//fin de chargement d'une sequence
+            else{//fin de chargement d'une sequence
                 for (int i=0; i<taille-repriseseq;i++){
                     try{
                     this.contenu[i]= Basede.research(indice+i+repriseseq);
-                    }catch(Exception e){System.out.println(e+" bob "+indice+" "+i+" "+repriseseq);}
+                    }catch(Exception e){System.out.println(e);}
                 }
                 this.sequencefinie =true;
                 this.nbblocseq = 0;

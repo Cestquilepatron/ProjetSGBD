@@ -36,6 +36,13 @@ public class Hashage {
                     don.hasher(result);
                     return don;
                 }
+                else{
+                    String nom = don.lecturedonneedeuxieme(this.rangcible);
+                    int taille = nom.length();
+                    int result= taille%this.nb;
+                    don.hasher(result);
+                    return don;
+                }
             case "pair":
                 if (this.cible !=2){
                    int num = don.get()[0];
@@ -43,6 +50,34 @@ public class Hashage {
                    don.hasher(result);
                    return don;
                 }
+                else{
+                    String nom = don.lecturedonneedeuxieme(this.rangcible);
+                    int taille = nom.length();
+                    int result= taille%2;
+                    don.hasher(result);
+                    return don;
+                }
+            case "égalité":
+                if (this.cible !=2){
+                   int num = don.lecturedonneepremier(this.rangcible);
+                   int result = num-this.nb;
+                   don.hasher(result);
+                   return don;
+                }
+                else{
+                    int result;
+                    String nom = don.lecturedonneedeuxieme(this.rangcible);
+                    String comp = don.lecturedonneedeuxieme(this.nb);
+                    boolean comparaison = nom.equals(comp);
+                    if (comparaison){
+                        result=1;
+                    }
+                    else{
+                        result=0;
+                    }
+                    don.hasher(result);
+                    return don;
+                }   
             default:
                 System.out.println("Erreur choix de Hashage");
                 return don;
@@ -61,7 +96,7 @@ public class Hashage {
                         
                     }
                 }
-            }catch(Exception e){System.out.println("Buffer" +i+" vide");}
+            }catch(Exception e){/*System.out.println("Buffer" +i+" vide");*/}
         }
     }
     

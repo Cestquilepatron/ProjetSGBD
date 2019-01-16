@@ -95,6 +95,7 @@ public class Donnees {
             for( int i = 0 ; i<this.deuxiemedonnee.length; i++){
                 System.out.println(this.deuxiemedonnee[i]);
             }
-        }   
+        }
+        System.out.println();
     }
 }

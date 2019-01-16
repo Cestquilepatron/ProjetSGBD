@@ -35,7 +35,7 @@ public class Jointure {
             Bucket buc1=buf1.dechargement2();
             Bucket buc2=buf2.dechargement2();
                 if (buc1.clef()==buc2.clef()){
-                   
+                   System.out.println("Jointure du bucket "+buc1.get()+ " et du bucket "+buc2.get());
                     for (int parcour = 0; parcour<buc1.taille() ;parcour++){
                         for (int parcours=0 ; parcours<buc2.taille();parcours++){
                             int[] entier1 = buc1.utilisation(parcour).lectureentier() ;
@@ -57,12 +57,9 @@ public class Jointure {
                             int nbaupif = rand.nextInt(100000000);
                             don.set(nbaupif, concat, motconcat);
                             int[] Seq=this.tab.liaison(0).get();
-                             System.out.println("joint");
                             Block bloc= this.mem.base().research(Seq[1]+Seq[2]-1);
-                            System.out.println("joint2");
                             if (!bloc.remplis()){
                                 bloc.integration2(don);
-                                System.out.println("ajout dans mm bloc");
                             }
                             else{
                                 Block bloc2= new Block();
@@ -70,7 +67,6 @@ public class Jointure {
                                 this.tab.liaison(0).agrandissement();
                                 bloc2.integration2(don);
                                 this.mem.base().add(bloc2);
-                                System.out.println("nouveau bloc");
                                 
                             }
 
