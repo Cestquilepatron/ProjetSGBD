@@ -53,7 +53,6 @@ public class Buffer {
     }
     
     public void chargementseq(Sequenceblock seq, Basededonnees Basede,int repriseseq){
-        System.out.println("entrée réussi");
         int [] tab = seq.get();
         int indice=tab[1];
         int taille = tab[2];
@@ -78,7 +77,7 @@ public class Buffer {
                 for (int i=0; i<taille-repriseseq;i++){
                     try{
                     this.contenu[i]= Basede.research(indice+i+repriseseq);
-                    }catch(Exception e){System.out.println(e+" "+indice+" "+i+" "+repriseseq);}
+                    }catch(Exception e){System.out.println(e+" bob "+indice+" "+i+" "+repriseseq);}
                 }
                 this.sequencefinie =true;
                 this.nbblocseq = 0;

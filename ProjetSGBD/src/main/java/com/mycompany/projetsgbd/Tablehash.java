@@ -54,7 +54,7 @@ public class Tablehash {
         }
         System.out.println("création buffer");
         Bucket b = new Bucket();
-        b.set(this.curseur, 1,clef);
+        b.set(this.curseur, 5,clef);
         this.espacealloue[this.curseur] = b;
         this.curseur= this.curseur+1;
         return b;

@@ -230,6 +230,7 @@ public class Simulation {
      Tablehash tablehash = Centrale.chargementbucket(T2);
      
      tabhash.affiche();
+     System.out.println();
      tablehash.affiche();
      System.out.println();
      
@@ -253,9 +254,8 @@ public class Simulation {
       System.out.println("Jointure obtenue : ");
       jointure.affiche();
     
-    base.research(10).affiche();
-    base.research(11).affiche();
-    base.research2(3).affiche();
+      base.research(5).affiche();
+      base.research(10).affiche();
      /* try{
       for (int i = 0; i< base.get();i++){
           base.research(i).affiche();
@@ -263,7 +263,7 @@ public class Simulation {
       } 
       }catch(Exception e){System.out.println(e );}*/
      
-      /*
+
       //*************************************************************************************************
       // 2eme exemple
       //********************************************************
@@ -400,13 +400,37 @@ public class Simulation {
       // Hashage des tables
       Hashage hashex2 = new Hashage();
       
-      hashex2.set(Table1ex2, Centraleex2);
+      hashex2.set(Table1ex2, Centraleex2,"modulo",1,0,5);
       Centraleex2.chargement(Table1ex2, hashex2);
       Tablehash Table1ex2H = Centraleex2.chargementbucket(Table1ex2);
       
-      hashex2.set(Table2ex2, Centraleex2);
+      hashex2.set(Table2ex2, Centraleex2,"modulo",1,0,5);
       Centraleex2.chargement(Table2ex2, hashex2);
-      Tablehash Table2ex2H = Centraleex2.chargementbucket(Table2ex2);*/
+      Tablehash Table2ex2H = Centraleex2.chargementbucket(Table2ex2);
+      
+      Table jointureex2= new Table();
+      String nomjointureex2= "jointure "+ Table2ex2.get() +" "+Table1ex2.get();
+      jointureex2.set(nomjointureex2, 1);
+      Sequenceblock Seqjoinex2= new Sequenceblock();
+      Seqjoinex2.set(base.get(),base.get(),1);
+      Block bex2=new Block();
+      bex2.set(base.get(), 4);
+      base.add(bex2);
+      jointureex2.integration(0, Seqjoinex2);
+      
+      Table2ex2H.affiche();
+      System.out.println();
+      Table1ex2H.affiche();
+      
+      Jointure Joinex2 = new Jointure();
+      Joinex2.set(jointureex2, Centraleex2);
+      Centraleex2.chargement( Table1ex2H, Table2ex2H, Joinex2);
+      
+      System.out.println("Jointure obtenue : ");
+      jointureex2.affiche();
+      
+      base.research(5).affiche();
+      base.research(12).affiche();
    }
   
 }

@@ -41,10 +41,18 @@ public class Memoirecentrale {
         System.out.println("\n \n \n \n Début hachage\n \n \n");
         
         while (parcourtab < tab.taille()){//parcours de la table
-            
+            boolean prece;
             for (int i=0 ; i < this.nbbuffer ;i++ ){//chargement des blocs dans les buffers
-                try{         
-                    if ((i!=0||parcourtab!=0) && !(this.Memoire[(i-1)%(this.nbbuffer-1)].Seqfinie())){//Vérification de si la sequence est entierement chargé
+                try{
+                    if (i==0){
+                        
+                        prece = !(this.Memoire[this.nbbuffer-1].Seqfinie());
+                    }
+                    else{
+                        prece=!(this.Memoire[i-1].Seqfinie());
+                    }
+                   
+                    if (prece){//Vérification de si la sequence est entierement chargé
                         System.out.println("charge buffer "+i);System.out.println("buffer"+(i-1)%(nbbuffer-1)+" indice "+this.Memoire[(i-1)%(nbbuffer-1)].indiceseqrestante()+" "+this.Memoire[(i-1)%(nbbuffer-1)].Seqfinie());
                         this.Memoire[i].chargementseq(tab.liaison(parcourtab), this.base,this.Memoire[(i-1)%(this.nbbuffer-1)].indiceseqrestante());
                         if (this.Memoire[i].Seqfinie()){
@@ -53,7 +61,7 @@ public class Memoirecentrale {
                         }
                     }
                     else{
-                        System.out.println("chargement buffer "+i);
+                        System.out.println("chargement buffer "+i +" truc" + (i!=0||parcourtab!=0) + " buf prec" + (i-1)%(nbbuffer-1));
                         this.Memoire[i].chargementseq(tab.liaison(parcourtab),this.base,0);
                         if (this.Memoire[i].Seqfinie()){
                             System.out.println("\n\n\n\n\n\n\n parcours en cours \n\n\n\n\n");
@@ -75,6 +83,7 @@ public class Memoirecentrale {
     }
     
     public Tablehash chargementbucket(Table T){
+        int prece;
         Tablehash tabhash=new Tablehash();
         tabhash.set(T.get(), 50);
         int parcourstab=0;
@@ -82,9 +91,17 @@ public class Memoirecentrale {
         while (parcourstab < T.taille()){//parcours de la table
             for (int i=0 ; i < nbbuffer ;i++ ){//chargement des blocs dans les buffers
                 try{
-                    if (i!=0 && this.Memoire[(i-1)%(nbbuffer-1)].indiceseqrestante()!=0){//Vérification de si la sequence est entierement chargé
+                    if (i==0){
+                        
+                        prece = this.Memoire[this.nbbuffer-1].indiceseqrestante() ;
+                    }
+                    else{
+                        prece= this.Memoire[(i-1)%(this.nbbuffer)].indiceseqrestante() ;
+                    }
+                    
+                    if ( prece!=0 ){//Vérification de si la sequence est entierement chargé
                         System.out.println("charge buffer "+i);
-                        this.Memoire[i].chargementseq(T.liaison(parcourstab), this.base,this.Memoire[(i-1)%(nbbuffer-1)].indiceseqrestante());
+                        this.Memoire[i].chargementseq(T.liaison(parcourstab), this.base,prece/*this.Memoire[(i-1)%(nbbuffer-1)].indiceseqrestante()*/);
                         if(this.Memoire[i].Seqfinie()){
                             parcourstab++;
                         }
@@ -107,6 +124,7 @@ public class Memoirecentrale {
            for (int i=0 ; i < this.nbbuffer-1 ;i++ ){
                 this.Memoire[i].videBuff();
             }
+           System.out.println(" Buffer vidé");
         }
         remplissagebucket2(tabhash);
         System.out.println("\n \n \n Fin mise en bucket\n \n \n");
@@ -165,12 +183,11 @@ public class Memoirecentrale {
                         Donnees donne = bloc.utilisation(parcour);
                         try{
                             Bucket buck=tabhash.researchclef(donne.clef());
-                            System.out.println(donne.lecturedonneepremier(0)+" "+donne.clef()+" et "+buck.clef());
                             boolean pascomplet = buck.pascomplet();
                             boolean associe=tabhash.get().equals(buck.tableassocie());
                             boolean nonlie=buck.tableassocie().equals("");
-                           // boolean clef = donne.clef()==buck.clef();
-                            if ( pascomplet && (associe|| nonlie) /*&& clef*/ ){//buck n'est pas complet, est bien lié à tabhash ou lié à aucune table
+
+                            if ( pascomplet && (associe|| nonlie) ){//buck n'est pas complet, est bien lié à tabhash ou lié à aucune table
                                buck.integration(donne,tabhash.get());
                                System.out.println("mise dans bucket "+ buck.get()+"de clef "+buck.clef()+" réussi pour l'étape "+parcour +"alors que"+buck.place()+" "+buck.pascomplet()+"et que clef données="+donne.clef()); 
                             }
@@ -208,15 +225,15 @@ public class Memoirecentrale {
             do {
                 for (int j=this.nbbuffer/2;j<this.nbbuffer;j++){
                     try{
-                        this.Memoire[j].chargement2(tab.liaison(parcourstabdeux));
+                        this.Memoire[j].chargement2(tabdeux.liaison(parcourstabdeux));
                         parcourstabdeux++;
                     }catch(Exception e){}
 
                 }
                 try{
                     J.jointure();
-                    //System.out.println("jointure" +parcourstabdeux+" "+parcourstab);
-                }catch (Exception e){}
+                    System.out.println("bob");
+                }catch (Exception e){System.out.println(e);}
                 
             }while(parcourstabdeux < tabdeux.taille());
             parcourstabdeux=0;

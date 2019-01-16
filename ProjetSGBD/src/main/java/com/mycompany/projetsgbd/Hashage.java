@@ -34,7 +34,6 @@ public class Hashage {
                     int result = num % this.nb;
                     
                     don.hasher(result);
-                    System.out.println(num+"nombre"+ result + "clef" + don.clef());
                     return don;
                 }
             case "pair":
@@ -45,7 +44,7 @@ public class Hashage {
                    return don;
                 }
             default:
-                System.out.println("NOOOOOOOOOOOOOON");
+                System.out.println("Erreur choix de Hashage");
                 return don;
         }
     }
@@ -59,7 +58,7 @@ public class Hashage {
                     for (int parcour = 0; parcour<bloc.taille();parcour++){
                         Donnees donne = bloc.utilisation(parcour);
                         donne=hash(donne);
-                        System.out.println(donne.clef()+" meme");
+                        
                     }
                 }
             }catch(Exception e){System.out.println("Buffer" +i+" vide");}
