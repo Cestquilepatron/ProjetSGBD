@@ -43,6 +43,23 @@ public class Tablehash {
         return this.espacealloue[i];
     }
     
+     public Bucket researchclef (int clef){
+        for (int i = 1 ; i<=this.taille ; i++)
+        {
+            if (this.espacealloue[this.taille-i]!=null){
+                if (this.espacealloue[this.taille-i].clef() == clef) {
+                    return this.espacealloue[this.taille-i];
+                }
+            }
+        }
+        System.out.println("création buffer");
+        Bucket b = new Bucket();
+        b.set(this.curseur, 1,clef);
+        this.espacealloue[this.curseur] = b;
+        this.curseur= this.curseur+1;
+        return b;
+    }
+    
     public void affiche(){
         System.out.println("Table:"+this.nom+" de taille "+this.taille+"composé de ");
         try{

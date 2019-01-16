@@ -26,21 +26,27 @@ public class Hashage {
         this.nb=n;
     }
     
-    public void hash(Donnees don){
+    public Donnees hash(Donnees don){
         switch(this.nomhashage){
             case "modulo":
                 if (this.cible != 2){
                     int num = don.lecturedonneepremier(this.rangcible);
                     int result = num % this.nb;
-                    System.out.println(num+"nombre"+ result + "clef");
+                    
                     don.hasher(result);
+                    System.out.println(num+"nombre"+ result + "clef" + don.clef());
+                    return don;
                 }
             case "pair":
                 if (this.cible !=2){
                    int num = don.get()[0];
                    int result = num % 2;
                    don.hasher(result);
+                   return don;
                 }
+            default:
+                System.out.println("NOOOOOOOOOOOOOON");
+                return don;
         }
     }
     
@@ -52,7 +58,8 @@ public class Hashage {
                     Block bloc = buff.dechargement(j);
                     for (int parcour = 0; parcour<bloc.taille();parcour++){
                         Donnees donne = bloc.utilisation(parcour);
-                        hash(donne);
+                        donne=hash(donne);
+                        System.out.println(donne.clef()+" meme");
                     }
                 }
             }catch(Exception e){System.out.println("Buffer" +i+" vide");}
