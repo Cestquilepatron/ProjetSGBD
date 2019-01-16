@@ -22,7 +22,9 @@ public class Tablehash {
         this.curseur = 0;
     }
     
-    
+    public int curseur(){
+        return this.curseur;
+    }
     
     public void integration(Bucket a){
         if (a.tableassocie().equals(this.nom)){

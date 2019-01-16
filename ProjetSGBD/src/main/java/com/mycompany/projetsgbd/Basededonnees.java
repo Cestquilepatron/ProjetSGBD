@@ -11,14 +11,12 @@ package com.mycompany.projetsgbd;
  */
 public class Basededonnees {
     private Block[] base;
-    private Bucket[] basedetri;
+
     private int nbbloc;
-    private int nbbucket;
+
     
     public void set(int taille){
         this.base = new Block[taille];
-        this.basedetri= new Bucket[taille];
-        this.nbbucket=0;
         this.nbbloc=0;
     }
     
@@ -26,9 +24,7 @@ public class Basededonnees {
         return this.nbbloc;
     }
     
-     public int get2(){
-        return this.nbbucket;
-    }
+
     
     public Block research (int indice){
         for (int i =0 ; i<=nbbloc ; i++)
@@ -46,45 +42,14 @@ public class Basededonnees {
         return b;
     }
     
-    public Bucket research2 (int indice){
-        for (int i = 0 ; i<=this.nbbucket ; i++)
-        {
-            if (this.basedetri[this.nbbucket-i]!=null){
-                if (this.basedetri[this.nbbucket-i].get() == indice) {
-                    return this.basedetri[i];
-                }
-            }
-        }
-        Bucket b = new Bucket();
-        b.set(nbbucket, 1,indice);
-        this.basedetri[nbbucket] = b;
-        this.nbbucket= this.nbbucket +1;
-        return b;
-    }
+
     
-    public Bucket researchclef (int clef){
-        for (int i = 0 ; i<=this.nbbucket ; i++)
-        {
-            if (this.basedetri[this.nbbucket-i]!=null){
-                if (this.basedetri[this.nbbucket-i].clef() == clef) {
-                    return this.basedetri[this.nbbucket-i];
-                }
-            }
-        }
-        Bucket b = new Bucket();
-        b.set(nbbucket, 1,clef);
-        this.basedetri[nbbucket] = b;
-        this.nbbucket= this.nbbucket +1;
-        return b;
-    }
+
     
     public void add (Block b){
         this.base[nbbloc] = b;
         this.nbbloc= this.nbbloc +1;
     }
     
-    public void add2 (Bucket b){
-        this.basedetri[nbbucket] = b;
-        this.nbbucket= this.nbbucket +1;
-    }
+
 }

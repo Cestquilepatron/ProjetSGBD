@@ -129,45 +129,7 @@ public class Memoirecentrale {
         return tabhash;
     }
     
-    public void remplissagebucket(Tablehash tabhash){
-        for (int i = 0; i< nbbuffer; i++){
-            try{
-                for (int j=0; j< Memoire[i].taille();j++){
-                    Block bloc = Memoire[i].dechargement(j);
-                    for (int parcour = 0; parcour<bloc.taille();parcour++){
-                        Donnees donne = bloc.utilisation(parcour);
-                        try{
-                            Bucket buck=base.researchclef(donne.clef());
-                            boolean pascomplet = buck.pascomplet();
-                            boolean associe=tabhash.get().equals(buck.tableassocie());
-                            boolean nonlie=buck.tableassocie().equals("");
-                            boolean clef = donne.clef()==buck.clef();
-                            if ( pascomplet && (associe|| nonlie) && clef ){//buck n'est pas complet, est bien lié à tabhash ou lié à aucune table
-                               buck.integration(donne,tabhash.get());
-                               System.out.println("mise dans bucket "+ buck.get()+"de clef "+buck.clef()+" réussi pour l'étape "+parcour +"alors que"+buck.place()+" "+buck.pascomplet()+"et que clef données="+donne.clef()); 
-                            }
-                            else{
-                                buck.set(base.get2(), 5, donne.clef());
-                                buck.integration(donne,tabhash.get());
-                                base.add2(buck);
-                                tabhash.integration( buck);
-                                System.out.println(" création puis mise dans bucket "+this.base.get2()+"de clef"+donne.clef()+" réussi pour l'étape "+parcour);
-                            }
-                            
-                        }catch(Exception e)
-                           {
-                                Bucket buck = new Bucket();
-                                buck.set(base.get2(), 5, donne.clef());
-                                buck.integration(donne,tabhash.get());
-                                base.add2(buck);
-                                tabhash.integration( buck);
-                                System.out.println(e +" création puis mise dans bucket "+this.base.get2()+"de clef"+donne.clef()+" réussi pour l'étape "+parcour);
-                            }
-                    }
-                }
-            }catch(Exception e){System.out.println(e+" Erreur mise dans bucket du buffer "+i);}
-        }
-    }
+
     
      public void remplissagebucket2(Tablehash tabhash){
         for (int i = 0; i< nbbuffer; i++){
@@ -187,7 +149,7 @@ public class Memoirecentrale {
                                //System.out.println("mise dans bucket "+ buck.get()+"de clef "+buck.clef()+" réussi pour l'étape "+parcour); 
                             }
                             else{
-                                buck.set(this.base.get2(), 5, donne.clef());
+                                buck.set(tabhash.curseur(), 5, donne.clef());
                                 buck.integration(donne,tabhash.get());
                                 tabhash.integration( buck);
                                 //System.out.println(" création puis mise dans bucket "+this.base.get2()+"de clef"+donne.clef()+" réussi pour l'étape "+parcour);
@@ -196,7 +158,7 @@ public class Memoirecentrale {
                         }catch(Exception e)
                            {
                                 Bucket buck = new Bucket();
-                                buck.set(this.base.get2(), 5, donne.clef());
+                                buck.set(tabhash.curseur(), 5, donne.clef());
                                 buck.integration(donne,tabhash.get());
                                 tabhash.integration( buck);
                                 //System.out.println(e +" création puis mise dans bucket "+this.base.get2()+"de clef"+donne.clef()+" réussi pour l'étape "+parcour);
