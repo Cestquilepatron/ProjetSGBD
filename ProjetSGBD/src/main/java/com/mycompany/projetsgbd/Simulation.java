@@ -254,14 +254,8 @@ public class Simulation {
       System.out.println("Jointure obtenue : ");
       jointure.affiche();
     
-      base.research(5).affiche();
       base.research(10).affiche();
-     /* try{
-      for (int i = 0; i< base.get();i++){
-          base.research(i).affiche();
-          base.research2(i).affiche();
-      } 
-      }catch(Exception e){System.out.println(e );}*/
+
      
 
       //*************************************************************************************************
@@ -412,10 +406,10 @@ public class Simulation {
       String nomjointureex2= "jointure "+ Table2ex2.get() +" "+Table1ex2.get();
       jointureex2.set(nomjointureex2, 1);
       Sequenceblock Seqjoinex2= new Sequenceblock();
-      Seqjoinex2.set(base.get(),base.get(),1);
+      Seqjoinex2.set(newbase.get(),newbase.get(),1);
       Block bex2=new Block();
-      bex2.set(base.get(), 4);
-      base.add(bex2);
+      bex2.set(newbase.get(), 4);
+      newbase.add(bex2);
       jointureex2.integration(0, Seqjoinex2);
       
       Table2ex2H.affiche();
@@ -429,8 +423,7 @@ public class Simulation {
       System.out.println("Jointure obtenue : ");
       jointureex2.affiche();
       
-      base.research(5).affiche();
-      base.research(12).affiche();
+      newbase.research(4).affiche();
    }
   
 }
