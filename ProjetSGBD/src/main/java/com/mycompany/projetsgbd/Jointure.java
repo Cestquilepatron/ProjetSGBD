@@ -20,10 +20,11 @@ public class Jointure {
     public void set(Table nomtab,Memoirecentrale nommemoire,int tab1cible,int rang1c, int tab2cible, int rang2c){
         this.mem=nommemoire;
         this.tab=nomtab;
-        this.tab1 = tab1cible;
-        this.rang1=rang1c;
-        this.tab2 = tab2cible;
-        this.rang2 = rang2c;
+        this.tab1 = tab1cible;//entier qui permet de choisir le tableau utiliser dans la 1ère table lors de la jointure
+        //si tab1 = 2 on utilise le tableau de string sinon on utilise le tableau d'entier
+        this.rang1=rang1c;//entier qui permet de choisir l'élément utiliser dans la 1ère table lors de la jointure
+        this.tab2 = tab2cible;//entier qui permet de choisir le tableau utiliser dans la 2ème table lors de la jointure
+        this.rang2 = rang2c;//entier qui permet de choisir le tableau utiliser dans la 2ème table lors de la jointure
     }
     
     public void jointure(){
@@ -55,7 +56,7 @@ public class Jointure {
                             String[] string2 = buc2.utilisation(parcours).lecturestring();
                             String[] motconcat = new String [string1.length+string2.length];
                             
-                            
+                            //critère de jointure
                             if (tab1==tab2){
                                 if(tab1!=2){
                                     conditionjointure= (entier1[rang1]==entier2[rang2]);

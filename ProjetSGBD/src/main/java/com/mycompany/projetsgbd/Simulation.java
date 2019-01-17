@@ -147,6 +147,7 @@ public class Simulation {
       B2.affiche();
       B.affiche();
       
+      //insertion des blocs dans la base
       base.add(B);
       base.add(B1);
       base.add(B2);
@@ -159,7 +160,7 @@ public class Simulation {
       base.add(B9);
       System.out.println(" La base contient maintenant "+base.get() +" bloc de donnée");
       
-     //Création d'une séquence
+     //Création de séquences
      Sequenceblock S=new Sequenceblock();
      S.set(3, 0, 1);
      Sequenceblock S1= new Sequenceblock();
@@ -174,7 +175,7 @@ public class Simulation {
      Sequenceblock S4= new Sequenceblock();
      S4.set(4, 4, 1);
      
-     //Création d'une table
+     //Création de tables
      Table T = new Table();
      T.set("Premieretable", 3);
      T.integration(0, S1);
@@ -217,8 +218,9 @@ public class Simulation {
      
      System.out.println("Nombre de buffer dans la mémoire centrale :" + Centrale.get() );
      
+     //Création du Hashage
      Hashage hash = new Hashage();
-     hash.set(T, Centrale,"modulo",1,0,5);
+     hash.set(T, Centrale,"modulo",1,0,5); //ici hashage sur la table T utilisant l'élément 0 du tableau d'entier et lui appliquant un modulo 5
      Centrale.chargement(T, hash);
      System.out.println("clef de A2 : "+ A2.clef());
      
@@ -246,10 +248,10 @@ public class Simulation {
       jointure.integration(0, Seqjoin);
       
 
-      
+      //Création et utilisation de la jointure
       Jointure Join = new Jointure();
-      Join.set(jointure, Centrale,1,0,1,0);
-      Centrale.chargement(tabhash, tablehash, Join);
+      Join.set(jointure, Centrale,1,0,1,0);//initialisation de la jointure, critère de jointure sur l'élément 0 du tableau d'entier des deux tables
+      Centrale.chargement(tabhash, tablehash, Join);//application de la jointure
       
       System.out.println("Jointure obtenue : ");
       jointure.affiche();
@@ -432,6 +434,7 @@ public class Simulation {
       System.out.println();
       Table1ex2H.affiche();
       
+      //jointure
       Jointure Joinex2 = new Jointure();
       Joinex2.set(jointureex2, Centraleex2,1,0,1,0);
       Centraleex2.chargement( Table1ex2H, Table2ex2H, Joinex2);
