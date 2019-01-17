@@ -88,7 +88,7 @@ public class Hashage {
         for (int i=0; i<mem.get ();i++){
             try{
                 Buffer buff=mem.utilisation(i);
-                for (int j=0; j<buff.taille();j++){
+                for (int j=0; j<buff.taille();j++){//Pour chaque buffer de la mémoire centrale, on
                     Block bloc = buff.dechargement(j);
                     for (int parcour = 0; parcour<bloc.taille();parcour++){
                         Donnees donne = bloc.utilisation(parcour);

@@ -36,8 +36,8 @@ public class Jointure {
             Bucket buc2=buf2.dechargement2();
                 if (buc1.clef()==buc2.clef()){
                    System.out.println("Jointure du bucket "+buc1.get()+ " et du bucket "+buc2.get());
-                    for (int parcour = 0; parcour<buc1.taille() ;parcour++){
-                        for (int parcours=0 ; parcours<buc2.taille();parcours++){
+                    for (int parcour = 0; parcour<buc1.taille() ;parcour++){//parcours du bucket dans le buffer 1
+                        for (int parcours=0 ; parcours<buc2.taille();parcours++){//parcour du bucket dans le buffer 2 puis création du nouveau tuple
                             int[] entier1 = buc1.utilisation(parcour).lectureentier() ;
                             int[] entier2 = buc2.utilisation(parcours).lectureentier();
                             int[] concat = new int [entier1.length+entier2.length];
@@ -57,6 +57,7 @@ public class Jointure {
                             int nbaupif = rand.nextInt(100000000);
                             don.set(nbaupif, concat, motconcat);
                             int[] Seq=this.tab.liaison(0).get();
+                            //Intégration du nouveau tuple dans la table
                             Block bloc= this.mem.base().research(Seq[1]+Seq[2]-1);
                             if (!bloc.remplis()){
                                 bloc.integration2(don);

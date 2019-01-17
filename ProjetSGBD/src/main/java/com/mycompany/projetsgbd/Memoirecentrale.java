@@ -85,7 +85,7 @@ public class Memoirecentrale {
         Tablehash tabhash=new Tablehash();
         tabhash.set(T.get(), 50);
         int parcourstab=0;
-        System.out.println("\n  Début bucket \n");
+        System.out.println("\n  Début bucket");
         while (parcourstab < T.taille()){//parcours de la table
             for (int i=0 ; i < nbbuffer ;i++ ){//chargement des blocs dans les buffers
                 try{
@@ -173,7 +173,7 @@ public class Memoirecentrale {
         System.out.println("\n Début JOINTURE \n");
         int parcourstab=0;
         int parcourstabdeux=0;
-       do {
+       do {//Chargement des buffers
             for (int i=0;i<this.nbbuffer/2;i++){
                 try{
                     this.Memoire[i].chargement2(tab.liaison(parcourstab));
