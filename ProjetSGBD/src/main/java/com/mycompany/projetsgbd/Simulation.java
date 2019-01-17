@@ -290,21 +290,21 @@ public class Simulation {
       Donnees don18 = new Donnees();
       Donnees don19 = new Donnees();
       
-      don0.set(0, 1, 0);
-      don1.set(1, 1, 0);
-      don2.set(2, 1, 0);
-      don3.set(3, 1, 0);
-      don4.set(4, 1, 0);
-      don5.set(5, 1, 0);
-      don6.set(6, 1, 0);
-      don7.set(7, 1, 0);
-      don8.set(8, 1, 0);
-      don9.set(9, 1, 0);
-      don10.set(10, 1, 0);
-      don11.set(11, 1, 0);
-      don12.set(12, 1, 0);
-      don13.set(13, 1, 0);
-      don14.set(14, 1, 0);
+      don0.set(0, 1, 1);
+      don1.set(1, 1, 1);
+      don2.set(2, 1, 1);
+      don3.set(3, 1, 1);
+      don4.set(4, 1, 1);
+      don5.set(5, 1, 1);
+      don6.set(6, 1, 1);
+      don7.set(7, 1, 1);
+      don8.set(8, 1, 1);
+      don9.set(9, 1, 1);
+      don10.set(10, 1, 1);
+      don11.set(11, 1, 1);
+      don12.set(12, 1, 1);
+      don13.set(13, 1, 1);
+      don14.set(14, 1, 1);
       don15.set(15, 1, 0);
       don16.set(16, 1, 0);
       don17.set(17, 1, 0);
@@ -331,6 +331,22 @@ public class Simulation {
       don17.insertiondonnee(0, 7);
       don18.insertiondonnee(0, 1);
       don19.insertiondonnee(0, 2);
+      
+      don0.insertiondonnee(0, "bob");
+      don1.insertiondonnee(0, "poulet");
+      don2.insertiondonnee(0, "bière");
+      don3.insertiondonnee(0, "ours");
+      don4.insertiondonnee(0, "michel");
+      don5.insertiondonnee(0, "kevin");
+      don6.insertiondonnee(0, "bobby");
+      don7.insertiondonnee(0, "Putin");
+      don8.insertiondonnee(0, "Kalash");
+      don9.insertiondonnee(0, "Rockie");
+      don10.insertiondonnee(0, "Gilé Jauné");
+      don11.insertiondonnee(0, "Bandana rouge");
+      don12.insertiondonnee(0, "Avion");
+      don13.insertiondonnee(0, "Gros avion");
+      don14.insertiondonnee(0, "Gros camion");
       
       Block Bk0 = new Block();
       Bk0.set(0, 5);
@@ -394,11 +410,11 @@ public class Simulation {
       // Hashage des tables
       Hashage hashex2 = new Hashage();
       
-      hashex2.set(Table1ex2, Centraleex2,"modulo",1,0,5);
+      hashex2.set(Table1ex2, Centraleex2,"modulo",1,0,1000);
       Centraleex2.chargement(Table1ex2, hashex2);
       Tablehash Table1ex2H = Centraleex2.chargementbucket(Table1ex2);
       
-      hashex2.set(Table2ex2, Centraleex2,"modulo",1,0,5);
+      hashex2.set(Table2ex2, Centraleex2,"modulo",1,0,1000);
       Centraleex2.chargement(Table2ex2, hashex2);
       Tablehash Table2ex2H = Centraleex2.chargementbucket(Table2ex2);
       

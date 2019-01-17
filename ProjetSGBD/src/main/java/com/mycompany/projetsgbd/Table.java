@@ -37,7 +37,7 @@ public class Table {
     }
     
     public void affiche(){
-        System.out.println("Table:"+this.nom+" de taille "+this.taille+"composé de ");
+        System.out.println("Table: "+this.nom+" de taille "+this.taille+" composé de ");
         for (int i=0;i<taille;i++){
             this.espacealloue[i].affiche();
         }  

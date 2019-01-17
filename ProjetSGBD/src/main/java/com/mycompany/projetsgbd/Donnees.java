@@ -88,12 +88,12 @@ public class Donnees {
         tab = this.get();
         if (tab[1]==1){
             for( int i = 0 ; i<this.premieredonnee.length; i++){
-                System.out.println(this.premieredonnee[i]);
+                System.out.print(this.premieredonnee[i] + " ");
             }
         }
         if (tab[2]==1){
             for( int i = 0 ; i<this.deuxiemedonnee.length; i++){
-                System.out.println(this.deuxiemedonnee[i]);
+                System.out.print(this.deuxiemedonnee[i]+" ");
             }
         }
         System.out.println();

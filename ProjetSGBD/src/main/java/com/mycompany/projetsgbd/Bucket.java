@@ -39,7 +39,7 @@ public class Bucket {
     
     public void affiche(){
         try{
-            System.out.println("Bucket n:"+this.nb+" de taille:"+this.taille +"associé à la table"+this.tablassocie+" de clef " + this.clefdehash);
+            System.out.println("Bucket n:"+this.nb+" de taille:"+this.taille +" associé à la table "+this.tablassocie+" de clef " + this.clefdehash);
             for( int i = 0 ; i<taille; i++){
                 this.Don[i].affiche();
             }
