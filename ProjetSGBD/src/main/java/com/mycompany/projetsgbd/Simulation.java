@@ -248,7 +248,7 @@ public class Simulation {
 
       
       Jointure Join = new Jointure();
-      Join.set(jointure, Centrale);
+      Join.set(jointure, Centrale,1,0,1,0);
       Centrale.chargement(tabhash, tablehash, Join);
       
       System.out.println("Jointure obtenue : ");
@@ -410,11 +410,11 @@ public class Simulation {
       // Hashage des tables
       Hashage hashex2 = new Hashage();
       
-      hashex2.set(Table1ex2, Centraleex2,"modulo",1,0,1000);
+      hashex2.set(Table1ex2, Centraleex2,"modulo",1,0,5);
       Centraleex2.chargement(Table1ex2, hashex2);
       Tablehash Table1ex2H = Centraleex2.chargementbucket(Table1ex2);
       
-      hashex2.set(Table2ex2, Centraleex2,"modulo",1,0,1000);
+      hashex2.set(Table2ex2, Centraleex2,"modulo",1,0,5);
       Centraleex2.chargement(Table2ex2, hashex2);
       Tablehash Table2ex2H = Centraleex2.chargementbucket(Table2ex2);
       
@@ -433,7 +433,7 @@ public class Simulation {
       Table1ex2H.affiche();
       
       Jointure Joinex2 = new Jointure();
-      Joinex2.set(jointureex2, Centraleex2);
+      Joinex2.set(jointureex2, Centraleex2,1,0,1,0);
       Centraleex2.chargement( Table1ex2H, Table2ex2H, Joinex2);
       
       System.out.println("Jointure obtenue : ");
